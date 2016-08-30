@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Types>
+  <Type>
+   <Name>Computer</Name>
+   <Members>
+     <ScriptProperty>
+     <Name>ModuleSpecification</Name>
+     <GetScriptBlock>
+      [Microsoft.PowerShell.Commands.ModuleSpecification]@{
+        ModuleName='Computer'
+        RequiredVersion ='2.0'
+        GUID='4b25a895-addd-45fd-82bc-b7b0ed80d3a6' 
+      } 
+    </GetScriptBlock>
+    <SetScriptBlock>
+      Throw 'ModuleSpecification is a read only property.'
+    </SetScriptBlock>
+   </ScriptProperty>
+   </Members>
+  </Type>
+</Types>

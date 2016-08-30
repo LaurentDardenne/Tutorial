@@ -1,0 +1,1 @@
+﻿Contient des démos de versionning d'instances issues de classe Powershell hébergées par un module. 
