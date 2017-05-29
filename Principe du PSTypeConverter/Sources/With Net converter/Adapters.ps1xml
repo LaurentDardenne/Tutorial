@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+    <Type>
+        <!--- Sérialisation : Associée à la propriété NetWork-->
+        <Name>GetAdmin.Net</Name>
+        <TypeConverter>
+            <TypeName>GetAdmin.NetConverter</TypeName>
+        </TypeConverter>
+        <Members>
+            <MemberSet>
+                <Name>PSStandardMembers</Name>
+                <Members>
+                    <NoteProperty>
+                        <Name>SerializationDepth</Name>
+                        <Value>1</Value>
+                    </NoteProperty>
+                </Members>
+            </MemberSet>
+        </Members>
+    </Type>
+
+    <Type>
+        <!--- Desérialisation : Associée à l'objet émis par le job distant -->
+        <Name>Deserialized.GetAdmin.Net</Name>
+        <Members>
+            <MemberSet>
+                <Name>PSStandardMembers</Name>
+                <Members>
+                    <NoteProperty>
+                        <Name>TargetTypeForDeserialization</Name>
+                        <Value>GetAdmin.Net</Value>
+                    </NoteProperty>
+                </Members>
+            </MemberSet>
+        </Members>
+    </Type>
+</Types>

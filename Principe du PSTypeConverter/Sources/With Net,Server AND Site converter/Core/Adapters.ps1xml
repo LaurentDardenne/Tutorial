@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+    <Type>
+        <!--- -->
+        <Name>GetAdmin.Net</Name>
+        <TypeConverter>
+            <TypeName>GetAdmin.NetConverter</TypeName>
+        </TypeConverter>
+        <Members>
+            <MemberSet>
+                <Name>PSStandardMembers</Name>
+                <Members>
+                    <NoteProperty>
+                        <Name>SerializationDepth</Name>
+                        <Value>1</Value>
+                    </NoteProperty>
+                </Members>
+            </MemberSet>
+        </Members>
+    </Type>
+
+    <Type>
+        <!--- -->
+        <Name>Deserialized.GetAdmin.Net</Name>
+        <Members>
+            <MemberSet>
+                <Name>PSStandardMembers</Name>
+                <Members>
+                    <NoteProperty>
+                        <Name>TargetTypeForDeserialization</Name>
+                        <Value>GetAdmin.Net</Value>
+                    </NoteProperty>
+                </Members>
+            </MemberSet>
+        </Members>
+    </Type>
+
+    <Type>
+        <!--- -->
+        <Name>GetAdmin.Server</Name>
+        <TypeConverter>
+            <TypeName>GetAdmin.ServerConverter</TypeName>
+        </TypeConverter>
+        <Members>
+            <MemberSet>
+                <Name>PSStandardMembers</Name>
+                <Members>
+                    <NoteProperty>
+                        <Name>SerializationDepth</Name>
+                        <Value>1</Value>
+                    </NoteProperty>
+                </Members>
+            </MemberSet>
+        </Members>
+    </Type>
+
+    <Type>
+        <!--- -->
+        <Name>Deserialized.GetAdmin.Server</Name>
+        <Members>
+            <MemberSet>
+                <Name>PSStandardMembers</Name>
+                <Members>
+                    <NoteProperty>
+                        <Name>TargetTypeForDeserialization</Name>
+                        <Value>GetAdmin.Server</Value>
+                    </NoteProperty>
+                </Members>
+            </MemberSet>
+        </Members>
+    </Type> 
+
+    <Type>
+        <!--- -->
+        <Name>GetAdmin.Site</Name>
+        <TypeConverter>
+            <TypeName>GetAdmin.SiteConverter</TypeName>
+        </TypeConverter>
+        <Members>
+            <MemberSet>
+                <Name>PSStandardMembers</Name>
+                <Members>
+                    <NoteProperty>
+                        <Name>SerializationDepth</Name>
+                        <Value>1</Value>
+                    </NoteProperty>
+                </Members>
+            </MemberSet>
+        </Members>
+    </Type>
+
+    <Type>
+        <!--- -->
+        <Name>Deserialized.GetAdmin.Site</Name>
+        <Members>
+            <MemberSet>
+                <Name>PSStandardMembers</Name>
+                <Members>
+                    <NoteProperty>
+                        <Name>TargetTypeForDeserialization</Name>
+                        <Value>GetAdmin.Site</Value>
+                    </NoteProperty>
+                </Members>
+            </MemberSet>
+        </Members>
+    </Type>     
+       
+</Types>

@@ -1,0 +1,2710 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,requiresActiveX=false" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+	<title>Object Serialization Directives | Windows PowerShell Blog</title>
+
+	<meta name="description" content="Automating the world one-liner at a time…">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://blogs.msdn.microsoft.com/powershell/xmlrpc.php">
+	<!-- Move Favicons To Child Theme Functions -->
+	<!--<link rel="shortcut icon" href="https://blogs.msdn.microsoft.com/powershell/wp-content/themes/cloud-platform/images/favicon.ico" />-->
+	<meta name="msvalidate.01" content="01EEB8C34FE4A6AA047F3FA8A590C583" />
+	<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Windows PowerShell Blog &raquo; Feed" href="https://blogs.msdn.microsoft.com/powershell/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Windows PowerShell Blog &raquo; Comments Feed" href="https://blogs.msdn.microsoft.com/powershell/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Windows PowerShell Blog &raquo; Object Serialization Directives Comments Feed" href="https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/feed/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Object Serialization Directives" />
+<meta property="og:url" content="https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/" />
+<meta property="og:description" content="" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Object Serialization Directives" />
+<meta name="twitter:url" content="https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/" />
+<meta name="twitter:description" content="" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/blogs.msdn.microsoft.com\/powershell\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='wds_msdn-parent-style-css'  href='https://blogs.msdn.microsoft.com/powershell/wp-content/themes/msdn-network-parent/style.min.css?ver=12272016' type='text/css' media='all' />
+<link rel='stylesheet' id='wds_cloud_platform-child-style-css'  href='https://blogs.msdn.microsoft.com/powershell/wp-content/themes/cloud-platform/style.min.css?ver=12052016' type='text/css' media='all' />
+<script type='text/javascript' src='https://blogs.msdn.microsoft.com/powershell/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://blogs.msdn.microsoft.com/powershell/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='https://blogs.msdn.microsoft.com/powershell/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://blogs.msdn.microsoft.com/powershell/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://blogs.msdn.microsoft.com/powershell/wp-includes/wlwmanifest.xml" /> 
+
+<link rel="canonical" href="https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/" />
+<link rel='shortlink' href='https://blogs.msdn.microsoft.com/powershell/?p=8051' />
+<link rel="alternate" type="application/json+oembed" href="https://blogs.msdn.microsoft.com/powershell/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblogs.msdn.microsoft.com%2Fpowershell%2F2007%2F04%2F30%2Fobject-serialization-directives%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://blogs.msdn.microsoft.com/powershell/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblogs.msdn.microsoft.com%2Fpowershell%2F2007%2F04%2F30%2Fobject-serialization-directives%2F&#038;format=xml" />
+	<script>
+		if(window.document.referrer.indexOf('login.live.com') !== -1) {
+			// redefine ga function to prevent referrer data collected by google analytics
+			window.ga = function(){};
+		}
+	</script>
+	<script type="text/javascript">
+jQuery( window ).load( function() {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('require', 'linkid');
+        ga('create', 'UA-65691138-1', 'auto');
+        ga('send', 'pageview');
+    } );
+</script>
+			<!-- Begin Custom CSS --><style type="text/css" id="wds-custom-css">
+			@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+
+}
+
+/* Added so that markdown looks more like powershell 
+   Screen captures */
+
+
+/*.markdown-body > .highlight-powershell > pre {
+  font-size: 100%;
+}
+*/
+
+.markdown-body > pre.powershell-console {
+     background-color: #012456;
+     color: #ffffff;
+}
+
+.markdown-body > p > code {
+  white-space: nowrap
+}
+
+
+/* content from https://assets-cdn.github.com/assets/github/index-6967b378b26829cc5a2ea2ad4209ff0af50f2a65057962219dc9dcf8942683f0.css */
+
+.markdown-body {
+    overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    word-wrap: break-word
+}
+.markdown-body>*:first-child {
+    margin-top: 0 !important
+}
+.markdown-body>*:last-child {
+    margin-bottom: 0 !important
+}
+.markdown-body a:not([href]) {
+    color: inherit;
+    text-decoration: none
+}
+.markdown-body .absent {
+    color: #c00
+}
+.markdown-body .anchor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    padding-right: 6px;
+    padding-left: 30px;
+    margin-left: -30px
+}
+.markdown-body .anchor:focus {
+    outline: none
+}
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    position: relative;
+    margin-top: 1em;
+    margin-bottom: 16px;
+    font-weight: bold;
+    line-height: 1.4
+}
+.markdown-body h1 .octicon-link, .markdown-body h2 .octicon-link, .markdown-body h3 .octicon-link, .markdown-body h4 .octicon-link, .markdown-body h5 .octicon-link, .markdown-body h6 .octicon-link {
+    display: none;
+    color: #000;
+    vertical-align: middle
+}
+.markdown-body h1:hover .anchor, .markdown-body h2:hover .anchor, .markdown-body h3:hover .anchor, .markdown-body h4:hover .anchor, .markdown-body h5:hover .anchor, .markdown-body h6:hover .anchor {
+    padding-left: 8px;
+    margin-left: -30px;
+    text-decoration: none
+}
+.markdown-body h1:hover .anchor .octicon-link, .markdown-body h2:hover .anchor .octicon-link, .markdown-body h3:hover .anchor .octicon-link, .markdown-body h4:hover .anchor .octicon-link, .markdown-body h5:hover .anchor .octicon-link, .markdown-body h6:hover .anchor .octicon-link {
+    display: inline-block
+}
+.markdown-body h1 tt, .markdown-body h1 code, .markdown-body h2 tt, .markdown-body h2 code, .markdown-body h3 tt, .markdown-body h3 code, .markdown-body h4 tt, .markdown-body h4 code, .markdown-body h5 tt, .markdown-body h5 code, .markdown-body h6 tt, .markdown-body h6 code {
+    font-size: inherit
+}
+.markdown-body h1 {
+    padding-bottom: 0.3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee
+}
+.markdown-body h1 .anchor {
+    line-height: 1
+}
+.markdown-body h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee
+}
+.markdown-body h2 .anchor {
+    line-height: 1
+}
+.markdown-body h3 {
+    font-size: 1.5em;
+    line-height: 1.43
+}
+.markdown-body h3 .anchor {
+    line-height: 1.2
+}
+.markdown-body h4 {
+    font-size: 1.25em
+}
+.markdown-body h4 .anchor {
+    line-height: 1.2
+}
+.markdown-body h5 {
+    font-size: 1em
+}
+.markdown-body h5 .anchor {
+    line-height: 1.1
+}
+.markdown-body h6 {
+    font-size: 1em;
+    color: #777
+}
+.markdown-body h6 .anchor {
+    line-height: 1.1
+}
+.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre {
+    margin-top: 0;
+    margin-bottom: 16px
+}
+.markdown-body hr {
+    height: 4px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none
+}
+.markdown-body ul, .markdown-body ol {
+    padding-left: 2em
+}
+.markdown-body ul.no-list, .markdown-body ol.no-list {
+    padding: 0;
+    list-style-type: none
+}
+.markdown-body ul ul, .markdown-body ul ol, .markdown-body ol ol, .markdown-body ol ul {
+    margin-top: 0;
+    margin-bottom: 0
+}
+.markdown-body li>p {
+    margin-top: 16px
+}
+.markdown-body dl {
+    padding: 0
+}
+.markdown-body dl dt {
+    padding: 0;
+    margin-top: 16px;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: bold
+}
+.markdown-body dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px
+}
+.markdown-body blockquote {
+    padding: 0 15px;
+    color: #777;
+    border-left: 4px solid #ddd
+}
+.markdown-body blockquote>:first-child {
+    margin-top: 0
+}
+.markdown-body blockquote>:last-child {
+    margin-bottom: 0
+}
+.markdown-body table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    word-break: normal;
+    word-break: keep-all
+}
+.markdown-body table th {
+    font-weight: bold
+}
+.markdown-body table th, .markdown-body table td {
+    padding: 6px 13px;
+    border: 1px solid #ddd
+}
+.markdown-body table tr {
+    background-color: #fff;
+    border-top: 1px solid #ccc
+}
+.markdown-body table tr:nth-child(2n) {
+    background-color: #f8f8f8
+}
+.markdown-body img {
+    max-width: 100%;
+    box-sizing: border-box
+}
+.markdown-body .emoji {
+    max-width: none
+}
+.markdown-body span.frame {
+    display: block;
+    overflow: hidden
+}
+.markdown-body span.frame>span {
+    display: block;
+    float: left;
+    width: auto;
+    padding: 7px;
+    margin: 13px 0 0;
+    overflow: hidden;
+    border: 1px solid #ddd
+}
+.markdown-body span.frame span img {
+    display: block;
+    float: left
+}
+.markdown-body span.frame span span {
+    display: block;
+    padding: 5px 0 0;
+    clear: both;
+    color: #333
+}
+.markdown-body span.align-center {
+    display: block;
+    overflow: hidden;
+    clear: both
+}
+.markdown-body span.align-center>span {
+    display: block;
+    margin: 13px auto 0;
+    overflow: hidden;
+    text-align: center
+}
+.markdown-body span.align-center span img {
+    margin: 0 auto;
+    text-align: center
+}
+.markdown-body span.align-right {
+    display: block;
+    overflow: hidden;
+    clear: both
+}
+.markdown-body span.align-right>span {
+    display: block;
+    margin: 13px 0 0;
+    overflow: hidden;
+    text-align: right
+}
+.markdown-body span.align-right span img {
+    margin: 0;
+    text-align: right
+}
+.markdown-body span.float-left {
+    display: block;
+    float: left;
+    margin-right: 13px;
+    overflow: hidden
+}
+.markdown-body span.float-left span {
+    margin: 13px 0 0
+}
+.markdown-body span.float-right {
+    display: block;
+    float: right;
+    margin-left: 13px;
+    overflow: hidden
+}
+.markdown-body span.float-right>span {
+    display: block;
+    margin: 13px auto 0;
+    overflow: hidden;
+    text-align: right
+}
+.markdown-body code, .markdown-body tt {
+    padding: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 3px
+}
+.markdown-body code:before, .markdown-body code:after, .markdown-body tt:before, .markdown-body tt:after {
+    letter-spacing: -0.2em;
+    content: "\00a0"
+}
+.markdown-body code br, .markdown-body tt br {
+    display: none
+}
+.markdown-body del code {
+    text-decoration: inherit
+}
+.markdown-body pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0
+}
+.markdown-body .highlight {
+    margin-bottom: 16px
+}
+.markdown-body .highlight pre, .markdown-body pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border-radius: 3px
+}
+.markdown-body .highlight pre {
+    margin-bottom: 0;
+    word-break: normal
+}
+.markdown-body pre {
+    word-wrap: normal
+}
+.markdown-body pre code, .markdown-body pre tt {
+    display: inline;
+    max-width: initial;
+    padding: 0;
+    margin: 0;
+    overflow: initial;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0
+}
+.markdown-body pre code:before, .markdown-body pre code:after, .markdown-body pre tt:before, .markdown-body pre tt:after {
+    content: normal
+}
+.markdown-body kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font-size: 11px;
+    line-height: 10px;
+    color: #555;
+    vertical-align: middle;
+    background-color: #fcfcfc;
+    border: solid 1px #ccc;
+    border-bottom-color: #bbb;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #bbb
+}
+.pl-c {
+    color: #969896
+}
+.pl-c1, .pl-s .pl-v {
+    color: #0086b3
+}
+.pl-e, .pl-en {
+    color: #795da3
+}
+.pl-s .pl-s1, .pl-smi {
+    color: #333
+}
+.pl-ent {
+    color: #63a35c
+}
+.pl-k {
+    color: #a71d5d
+}
+.pl-pds, .pl-s, .pl-s .pl-pse .pl-s1, .pl-sr, .pl-sr .pl-cce, .pl-sr .pl-sra, .pl-sr .pl-sre {
+    color: #183691
+}
+.pl-v {
+    color: #ed6a43
+}
+.pl-id {
+    color: #b52a1d
+}
+.pl-ii {
+    background-color: #b52a1d;
+    color: #f8f8f8
+}
+.pl-sr .pl-cce {
+    color: #63a35c;
+    font-weight: bold
+}
+.pl-ml {
+    color: #693a17
+}
+.pl-mh, .pl-mh .pl-en, .pl-ms {
+    color: #1d3e81;
+    font-weight: bold
+}
+.pl-mq {
+    color: #008080
+}
+.pl-mi {
+    color: #333;
+    font-style: italic
+}
+.pl-mb {
+    color: #333;
+    font-weight: bold
+}
+.pl-md {
+    background-color: #ffecec;
+    color: #bd2c00
+}
+.pl-mi1 {
+    background-color: #eaffea;
+    color: #55a532
+}
+.pl-mdr {
+    color: #795da3;
+    font-weight: bold
+}
+.pl-mo {
+    color: #1d3e81
+}
+.ace_gutter {
+    background: #ffffff;
+    color: #999999
+}
+.ace_print-margin {
+    width: 1px;
+    background: #e8e8e8
+}
+.ace-github-light {
+    background-color: #ffffff;
+    color: #333333
+}
+.ace_cursor {
+    color: #000000
+}
+.ace_marker-layer .ace_selection {
+    background: #c8c8fa
+}
+.ace_multiselect .ace_selection.ace_start {
+    box-shadow: 0 0 3px 0px #ffffff;
+    border-radius: 2px
+}
+.ace_marker-layer .ace_step {
+    background: #c6dbae
+}
+.ace_marker-layer .ace_bracket {
+    margin: -1px 0 0 -1px;
+    border: 1px solid #c0c0c0
+}
+.ace_marker-layer .ace_active-line {
+    background: #f5f5f5
+}
+.ace_gutter-active-line {
+    background-color: #f5f5f5
+}
+.ace_marker-layer .ace_selected-word {
+    border: 1px solid #c8c8fa
+}
+.ace_fold {
+    background-color: #a71d5d;
+    border-color: #333333
+}
+.ace_keyword {
+    color: #a71d5d
+}
+.ace_constant {
+    color: #0086b3
+}
+.ace_support {
+    color: #0086b3
+}
+.ace_support.ace_constant {
+    color: #0086b3
+}
+.ace_support.ace_type {
+    color: #a71d5d
+}
+.ace_storage {
+    color: #a71d5d
+}
+.ace_storage.ace_type {
+    color: #a71d5d
+}
+.ace_invalid.ace_illegal {
+    text-decoration: underline;
+    font-style: italic;
+    color: #f8f8f8;
+    background-color: #b52a1d
+}
+.ace_invalid.ace_deprecated {
+    text-decoration: underline;
+    font-style: italic;
+    color: #b52a1d
+}
+.ace_string {
+    color: #183691
+}
+.ace_string.ace_regexp {
+    color: #183691
+}
+.ace_comment {
+    color: #969896
+}
+.ace_variable {
+    color: #ed6a43
+}
+.ace_entity.ace_name {
+    color: #795da3
+}
+.ace_entity.ace_name.ace_tag {
+    color: #63a35c
+}
+.ace_markup.ace_heading {
+    color: #1d3e81
+}
+.ace_markup.ace_list {
+    color: #693a17
+}
+.home .blog-title {
+  margin: 10px 0 20px;
+  font-size: 29px;
+}
+
+.network-home-highlights-wrapper {
+  font-size: 14px;
+  font-family: WOL_Reg, 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+.network-home-highlights-wrapper .entry-title {
+  font-size: 16px;
+}
+.network-home-highlights-wrapper .blog-source {
+  font-size: 12px;
+}
+
+.widget .widget-title {
+  color: #2a2a2a;
+  font-size: 16px;
+}
+
+.widget-link-list {
+  list-style-type: none;
+  margin: 0 0 30px 0;
+  padding: 0;
+}
+.widget-link-list li {
+  margin: 0 0 7px 0;
+  padding: 0;
+}
+
+.widget-link-list img {
+	margin: 0; 
+	padding: 0;
+}
+
+.widget .widget-rss-link {
+  position: relative;
+}
+.widget .widget-rss-link a {
+  display: block;
+  position: absolute;
+  top: -39px;
+  right: 0;
+  width: 14px;
+  height: 14px;
+}
+.widget .widget-rss-link a img {
+  padding: 0;
+}
+
+/*Main Navigation*/
+.main-navigation {
+	font-size: 13px;
+}
+.main-navigation ul {
+	/* subnav adjacent item gap - allows subnav to not appear connected to adjacent menu items */
+	display: block;
+	table-layout: auto;
+}
+
+.main-navigation ul li {
+	display: block; /* subnav adjacent item gap */
+}
+
+.main-navigation ul,
+.main-navigation li {
+	background: #00368a;
+	margin: 0;
+}
+.main-navigation ul li {
+	padding: 0;
+}
+.main-navigation li a {
+	height: 60px;
+	padding: 5px 30px 6px 10px;
+}
+
+.main-navigation .menu > .menu-item {
+	border-bottom: 1px solid #fff; /* subnav adjacent item gap */
+}
+.main-navigation .menu > .menu-item.active {
+	background: #01265f;
+	border-bottom-color: #01265f;
+}
+
+.main-navigation li:hover {
+  background: #01265f;
+}
+
+.main-navigation ul .sub-menu {
+	margin-top: 1px; /* subnav adjacent item gap */
+}
+
+.main-navigation li .sub-menu li a {
+	line-height: 1.3em;
+}
+
+.sub-menu.active li {
+	background: #01265f;
+}
+
+.sub-menu.active li:hover{
+  background: #00368a;
+}
+/*End Main Navigation*/
+
+.child-level-below-nav .blog-title a {
+  color: #00368a;
+}
+
+a:visited,
+h2.entry-title a:visited {
+  color: #969696;
+}
+
+a:hover,
+h2.entry-title a:hover {
+  color: #004185;
+}
+
+.child-level-below-nav .blog-title {
+  font-size: 3.9rem;
+}
+
+h1.entry-title {
+  font-size: 2.6rem;
+  margin-bottom: 8px;
+}
+h2.entry-title {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+h2.entry-title a {
+  color: #0072c6;
+}
+
+.entry-meta {
+  margin-bottom: 8px;
+}
+
+.post-info {
+  margin-bottom: 0;
+}
+
+.entry-summary {
+  margin-top: 0;
+}
+
+.social-icons-wrap ul {
+  margin-top: 12px;
+}
+
+.wds-ratings-stars.current-rating,
+.wds-ratings-stars.current-rating.wds-ratings-active,
+.wds-ratings-stars.wds-ratings-active {
+  color: #f4b93f;
+}
+
+/* Begin tabs and container for sxp */
+	.layout-region.content .sxp-title {font-size: 1.333em/*16px*/;}
+	.sxp-feed p.sxp-time-author-comments {margin: 4px 0 -8px;}
+	.sxp-feed {margin-top: 30px;}
+  .right-sidebar .sxp-feed {margin: 0 0 15px 0;}
+	.sxp-feed:first-child {margin-top: 0;}
+	.sxp-feed p {margin: 12px 0 0;}
+  .right-sidebar .sxp-feed p {margin: 0;}
+	.sxp-feed .sxp-time {color: #707070;}
+	.sxp-feed .sxp-comments {margin-left: 21px; padding-left: 16px; background: url('https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/94/25/7282.icon-comments.png') 0 4px no-repeat;}
+	.sxp-container {padding: 0 20px;}
+  .right-sidebar .sxp-container {padding: 0;}
+	#sxp-feed-container-all {}
+	#sxp-feed-container-news {display: none;}  
+	#sxp-feed-container ul {padding: 0 0 0 15px;}
+	#sxp-feed-container-parent {position: relative; border: solid 1px #ccc; border-width: 0 1px 1px; padding: 0 0 20px;}
+	#sxp-tabs {margin: 0 0 30px; width: 100%; background: #00368a; height: 32px; padding: 0 !important; border-bottom: solid 1px #ccc; font-size: 14px;}
+	#sxp-tabs li {list-style-type: none; height: 32px; position: relative; float: left; border: solid #CCC; border-width: 0 1px 1px 0;}
+	#sxp-tabs a {color: #fff; background: #00368a; height: 100%; line-height: 34px; padding: 0 20px; display: block; margin-left: 0;}
+	#sxp-tabs a:hover {text-decoration: none;}
+	#sxp-tabs a:first-child + a {left: -3px;}
+	#sxp-tabs a:hover {background: #01265f;}
+	#sxp-tabs .selected {margin-top: -4px; height: 36px;}
+	#sxp-tabs .selected a, #sxp-tabs .selected a:hover {background: #01265f;}
+	#sxp-tabs .selected span {z-index: 805; position: absolute; bottom: -7px; width: 100%; height: 7px; background: transparent url('https://msdnshared.blob.core.windows.net/media/2015/11/jj157208.server-management-selected-tail(en-us,MSDN.10).png') no-repeat 50% 0;}
+	#all-rss-link {float: right; margin: 0 15px 0 0; padding: 0 15px 0 0; position: relative; top: -21px; }
+	#all-rss-link span {margin: 0 0 0 4px; display: inline-block; background: url('https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/94/25/2110.metroRSS.png') 0 0; height: 14px; width: 14px;}
+  #all-rss-link a { font-size: 13px; color: #00749e; }
+  #all-rss-link a:hover { text-decoration: underline; }
+  #all-rss-link a:visited { color: #707070; }
+	.feedPager {border-top: solid 1px #ccc; margin: 30px 0 20px; padding: 12px 0;}
+	.feedPager a.pagerLink.currentPage {font-weight: bold; color: #000;}
+	.feedPager a.pagerLink.currentPage:hover {cursor: default;}
+	.feedPager a.pagerLink {margin-left: 15px;}
+	.feedPager a.pagerLink:first-child {margin-left: 0;}
+	.content-fragment.raw-html:first-child .user-defined-markup {overflow: visible;}
+/* End tabs and container for sxp */
+
+/*Social Tile links*/
+.sidebar-tiles {
+  clear: both;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0
+}
+.sidebar-tiles li {
+  float: left;
+  margin: 0 5px 5px 0;
+  padding: 0;
+}
+.sidebar-tiles a {
+    background: #424242;
+    color: #fff;
+    display: block;
+    font-size: 11px;
+    margin: 0;
+    padding: 54px 10px 0 5px;
+    width: 70px;
+    height: 70px;
+    text-decoration: none;
+    line-height: 13px;
+    width: 65px;
+}
+.sidebar-tiles a.sidebar-tile-subscribe {
+  background: #ea700d url('https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/94/25/0045.icon-tile-rss.png') 50% 50% no-repeat;
+}
+.sidebar-tiles a.sidebar-tile-twitter {
+  background: #55acee url('https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/94/25/twitter-tile.png') 50% 50% no-repeat;
+}
+.sidebar-tiles a.sidebar-tile-facebook {
+  background: #3b5998 url('https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/94/25/2055.facebook.png') 50% 50% no-repeat;
+}
+.sidebar-tiles a.sidebar-tile-comments {
+  background: #006bc2 url('https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/94/25/5415.icon-comments-large.png') 50% 50% no-repeat;
+}
+.sidebar-tiles a.sidebar-tile-contact {
+  background: #00368a url('https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/94/25/5340.icon-email-large.png') 50% 50% no-repeat;
+}
+.sidebar-tiles a.sidebar-tile-home {
+  background: #00368a url('https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/94/25/5417.home.png') 50% 50% no-repeat;
+}
+.sidebar-tiles a:hover {
+  color: #fff;
+  background-color: #01265f;
+}
+
+@media (min-width:37.5em){ /*medium*/
+  .home .blog-title {
+    margin: -10px 0 20px;
+    font-size: 39px;
+  }
+  .main-navigation ul {
+  	height: 121px;
+  }
+}
+@media (min-width:60em){ /*large*/
+  .main-navigation ul {
+  	height: 58px;
+  }
+}	
+
+/*Child specific styles*/
+
+.child-level-below-nav h2.blog-title {
+  margin: 10px 0 8px;
+  padding: 0;
+  font-size: 29px;
+}
+
+.child-level-below-nav .child-below-nav-right img {
+  float: none;
+  top: auto;
+  margin: 23px 0 0;
+}
+.site-content {
+  margin: 2rem auto 0; /* need space after site logo */
+}
+
+.sidebar-btn {
+  margin: 0 0 13px 0;
+  color: #fff;
+}
+.sidebar-btn-purple {
+  background-color: #68217a;
+}
+.sidebar-btn-green {
+  background-color: #009E49;
+}
+.sidebar-btn-cyan {
+  background-color: #0072C6;
+}
+.sidebar-btn a {
+  line-height: 34px; 
+  font-family: 'Segoe UI Semibold','Segoe UI',Tahoma,Helvetica,Sans-Serif;
+  padding: 0 30px 0 35px;
+  display: table-cell;
+  vertical-align: middle;
+  background: url('http://cdn3.visualstudio.com/Areas/VisualStudio/Themes/VStudio/Content/Images/arrowWhite.png') no-repeat right center;
+  border-right: 10px solid transparent; 
+  color: #fff;
+}
+.sidebar-btn a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+
+@media (min-width:37.5em){ 
+  .child-level-below-nav h2.blog-title {
+    margin: 10px 0 8px;
+    padding: 0;
+    font-size: 39px;
+  }
+}
+@media (min-width:48.125em){
+  .child-level-below-nav .child-below-nav-right img {
+    float: none;
+    top: auto;
+    margin: 23px 0 0;
+  }
+  #secondary {
+      float: right;
+      width: 23.5492%;
+  }
+  #tag-wrap,
+  .comments-area {
+      clear: left;
+      width: 74.5164%;
+  }
+  .comments-area .comment-list {
+      clear: left;
+  }
+}
+@media (min-width:60em){ 
+
+}			</style><!-- End Custom CSS -->
+						<link rel="shortcut icon" href="https://blogs.msdn.microsoft.com/powershell/wp-content/themes/cloud-platform/images/favicon-msdn.png" >
+		<meta property="Search.Network" name="Search.Network" content="ceblognetwork" />
+</head>
+
+<body class="single single-post postid-8051 single-format-standard msdn-2184 group-blog">
+	<div id="top-link"></div>
+
+	
+<div class="site-header-wrap">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="top-breadcrumb-wrap-child">
+
+			<div class="top-breadcrumbs"><a href ="https://blogs.technet.microsoft.com/serverandtools">Server & Tools Blogs</a> > <a href ="https://blogs.technet.microsoft.com/server-management">Server &amp; Management Blogs</a> > Windows PowerShell Blog</div>
+			<div class="utility-breadcrumbs">
+				<nav id="site-utility-navigation" class="utility-navigation" role="navigation">
+					<div class="menu-utility-nav-container">
+						<ul id="menu-utility-nav" class="menu">
+															<li class="menu-item"><a href="https://blogs.msdn.microsoft.com/wp-login.php?aadsso_action=login">Sign in</a></li>
+													</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+		<a href="#togglemenu" class="header-mobile-dropdown-toggle-child">Menu</a>
+		<div class="header-mobile-dropdown-child-level">
+			<nav id="site-navigation" class="main-navigation" role="navigation">
+				<a class="skip-link screen-reader-text" href="#content">
+					Skip to content				</a>
+								<div class="menu-server-and-management-blogs-main-menu-container"><ul id="menu-server-and-management-blogs-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-33"><a href="#">All About Windows Server</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-113"><a href="https://blogs.technet.microsoft.com/windowsserver/">Windows Server</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-685"><a href="https://blogs.technet.microsoft.com/nanoserver/">Nano Server</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-123"><a href="https://blogs.technet.microsoft.com/sbs/">Windows Server Essentials</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-143"><a href="https://blogs.technet.microsoft.com/askperf/">Ask the Performance Team</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-153"><a href="https://blogs.technet.microsoft.com/askpfeplat/">Ask Premier Field Engineering (PFE) Platforms</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-652"><a href="https://blogs.technet.microsoft.com/askcore/">Ask the Core Team</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-43"><a href="#">Cloud Platform Blogs</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-223"><a href="https://blogs.technet.microsoft.com/hybridcloud/">Hybrid Cloud</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-661"><a href="https://azure.microsoft.com/blog/">Microsoft Azure</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-214"><a href="https://blogs.technet.microsoft.com/privatecloud/">Building Clouds</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-53"><a href="#">Datacenter Management</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-233"><a href="https://blogs.technet.microsoft.com/hybridcloud/">Hybrid Cloud</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-653"><a href="https://blogs.technet.microsoft.com/msoms/">Operations Management Suite (OMS)</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-243"><a href="https://blogs.technet.microsoft.com/scvmm/">System Center Virtual Machine Manager</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-253"><a href="https://blogs.technet.microsoft.com/servicemanager/">System Center Service Manager</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-263"><a href="https://blogs.technet.microsoft.com/momteam/">System Center Operations Manager</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-283"><a href="https://blogs.technet.microsoft.com/orchestrator/">System Center Orchestrator</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-695"><a href="https://blogs.technet.microsoft.com/dpm/">System Center Data Protection Manager</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-63"><a href="#">Client Management</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-293"><a href="https://blogs.technet.microsoft.com/configurationmgr/">System Center Configuration Manager</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-675"><a href="https://blogs.technet.microsoft.com/enterprisemobility/?product=system-center-configuration-manager">Configuration Manager Team</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-303"><a href="https://blogs.technet.microsoft.com/servicemanager/">System Center Service Manager</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-313"><a href="https://blogs.technet.microsoft.com/mmpc/">Malware Protection Center</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-323"><a href="https://blogs.technet.microsoft.com/enterprisemobility/?product=microsoft-intune">Microsoft Intune</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-333"><a href="https://blogs.technet.microsoft.com/sus/">Server Update Services</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-343"><a href="https://blogs.technet.microsoft.com/enterprisemobility/">Enterprise Mobility</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-73"><a href="#">Virtualization, VDI &amp; Remote Desktop</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-353"><a href="https://blogs.technet.microsoft.com/virtualization/">Virtualization Team</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-363"><a href="http://blogs.msdn.microsoft.com/virtual_pc_guy/">Ben Armstrong&#8217;s Virtualization</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-374"><a href="https://blogs.technet.microsoft.com/enterprisemobility/?product=windows-server-remote-desktop-services">Remote Desktop Services</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-394"><a href="https://blogs.technet.microsoft.com/askcore/tag/hyper-v/">Ask the Core Team on Hyper-V</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-403"><a href="https://blogs.technet.microsoft.com/enterprisemobility/">Enterprise Mobility</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-83"><a href="#">File &amp; Storage &amp; High Availability</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-404"><a href="https://blogs.technet.microsoft.com/filecab/">File &amp; Storage</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-414"><a href="https://blogs.technet.microsoft.com/askcore/tag/failover-cluster/">Ask the Core Team on Failover Cluster</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-423"><a href="http://blogs.msdn.microsoft.com/clustering/">Clustering &amp; High Availability</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-93"><a href="#">Windows Server Management</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-433"><a href="http://blogs.msdn.microsoft.com/powershell/">PowerShell</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-443"><a href="https://blogs.technet.microsoft.com/heyscriptingguy/">Hey Scripting Guy (PowerShell)</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-463"><a href="https://blogs.technet.microsoft.com/networking/">Networking</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-103"><a href="#">Identity, Access &amp; Security</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-666"><a href="https://blogs.technet.microsoft.com/datacentersecurity/">Datacenter and Private Cloud Security</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-483"><a href="https://blogs.technet.microsoft.com/enterprisemobility/?product=azure-active-directory">Active Directory</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-493"><a href="https://blogs.technet.microsoft.com/enterprisemobility/">Enterprise Mobility</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-473"><a href="https://blogs.technet.microsoft.com/askds/">Ask Directory Services</a></li>
+</ul>
+</li>
+</ul></div>			</nav> <!-- #site-navigation -->
+		</div>
+
+		<div class="child-level-below-nav">
+
+			<div class="child-below-nav-wrapper">
+
+				<div class="child-below-nav-left">
+
+						<div class="blog-name">
+		<div class="inner-name-wrapper">
+			<h2 class="blog-title"><a href="https://blogs.msdn.microsoft.com/powershell">Windows PowerShell Blog</a></h2>
+					</div>
+	</div>
+
+					<p class="blog-description">Automating the world one-liner at a time… </p>
+
+				</div>
+
+				<div class="child-below-nav-right">
+									</div>
+
+			</div>
+
+			
+		</div>
+	</header>
+	<!-- #masthead -->
+</div>
+
+<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+			
+				
+				<article id="post-8051" class="post-8051 post type-post status-publish format-standard hentry">
+	<header class="entry-header">
+		<h1 class="entry-title">Object Serialization Directives</h1>
+		<div class="rating-wrap">
+		<div id="star-rating-8051" class="wds-ratings" data-rating="0" data-userrating="0" data-postid="8051" data-container="body" data-toggle="tooltip" title="0 user(s) rated">
+			<div class="wds-ratings-inner-wrap">
+				<div>
+					<div aria-label="Select 5 star, this article is 0 star rated" tabindex="0" class="wds-ratings-stars wds-ratings-stars-enable-editing" data-stars="5"><span aria-hidden="true" class="star-1"><span>&#x2605;</span></span><span aria-hidden="true" class="star-2"><span>&#x2605;</span></span><span aria-hidden="true" class="star-3"><span>&#x2605;</span></span><span aria-hidden="true" class="star-4"><span>&#x2605;</span></span><span aria-hidden="true" class="star-5"><span>&#x2605;</span></span></div><div aria-label="Select 4 star, this article is 0 star rated" tabindex="0" class="wds-ratings-stars wds-ratings-stars-enable-editing" data-stars="4"><span aria-hidden="true" class="star-1"><span>&#x2605;</span></span><span aria-hidden="true" class="star-2"><span>&#x2605;</span></span><span aria-hidden="true" class="star-3"><span>&#x2605;</span></span><span aria-hidden="true" class="star-4"><span>&#x2605;</span></span></div><div aria-label="Select 3 star, this article is 0 star rated" tabindex="0" class="wds-ratings-stars wds-ratings-stars-enable-editing" data-stars="3"><span aria-hidden="true" class="star-1"><span>&#x2605;</span></span><span aria-hidden="true" class="star-2"><span>&#x2605;</span></span><span aria-hidden="true" class="star-3"><span>&#x2605;</span></span></div><div aria-label="Select 2 star, this article is 0 star rated" tabindex="0" class="wds-ratings-stars wds-ratings-stars-enable-editing" data-stars="2"><span aria-hidden="true" class="star-1"><span>&#x2605;</span></span><span aria-hidden="true" class="star-2"><span>&#x2605;</span></span></div><div aria-label="Select 1 star, this article is 0 star rated" tabindex="0" class="wds-ratings-stars wds-ratings-stars-enable-editing" data-stars="1"><span aria-hidden="true" class="star-1"><span>&#x2605;</span></span></div>
+				</div>
+			</div>
+		</div>
+		</div>	</header><!-- .entry-header -->
+
+	<div class="entry-meta row">
+		<div class="post-info">
+			<span class="posted-on"><time class="entry-date published" datetime="2007-04-30T22:37:46+00:00">April 30, 2007</time></span> <span class="byline">by <span class="author vcard profile-usercard-hover" data-profile-userid="ddd19f65beb04f1086b7ee94c85ffd0c"><a class="url fn n profile-usercard-a" href="https://social.msdn.microsoft.com/profile/PowerShell+Team">PowerShell Team</a></span></span> <span class="slashes comment-slashes">//</span> <a class="num-comments" href="https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/#comments">4 Comments</a>		</div>
+
+		<div class="row">
+			<div class="social-icons-wrap">
+		<ul class="social-icons">
+			<li><div class="fb-share-button" data-href="https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/&amp;src=sdkpreparse">Share</a></div></li>
+			<div id="fb-root" style="display:none"></div>
+			
+			<li class="social-icon twitter"><a data-social='{"type":"twitter", "url":"https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/", "text": "Object Serialization Directives"}' href="#" id="post_tweet_count">0</a></li>
+			<li class="social-icon linkedin"><a data-social='{"type":"linkedin", "url":"https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/", "text": "Object Serialization Directives"}' href="#" id="get_post_linkedin_count">0</a></li>
+		</ul>
+	</div><!-- .social-icons-wrap -->
+	<script type="text/javascript">
+		// Get social counts
+		jQuery( window ).load(function () {
+			jQuery.getScript('https://blogs.msdn.microsoft.com/powershell/wp-content/themes/msdn-network-parent/js/social-counts.min.js?ver=12272016')
+				.done(function(script,textStatus) {
+					window.msdnsocial.ajax('https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/');
+				});
+		});
+	</script>
+		</div>
+	</div><!-- .entry-meta -->
+
+	
+	<div class="entry-content">
+		<p><span style="color:#1f497d">When PowerShell serializes an object (e.g. when using Export-CLIXML) , we first look for serialization directives in the extended type system and then fall back to some default heuristics.   We have not documented those serialization directives yet but Hitesh Raigandhi took the time to provide a few examples below.<br />
+</span></p>
+<p><span style="color:#1f497d">A number of people have asked why we don&#8217;t just use the object serialization provided by the .NET object itself.  There are a couple reasons for that but the primary one is that we have a management mindset.   That means that we want to serialize these objects into a form that can be used 30 years from now.  Sound crazy?  It isn&#8217;t.  We can still talk to the earliest SNMP devices because SNMP MIBs are hierarchical collections of a fixed set of simple types.  Strings, Ints, Booleans, Floats, etc – those puppies haven&#8217;t change in a long time and probably  won&#8217;t for quite a while more <span style="font-family:Wingdings">J</span>.   Most developers don&#8217;t have this mindset when they produce their XML serialization.  You can probably use the same version of the software to serialize and deserialize the objects and if you are lucky, the next version might support the previous version.  That is, as long as the PMs, Devs and testers all agree that it is worth the investment to do this and are willing to cut other features to ensure that this.  So the real answer is, &#8220;maybe it will and maybe it won&#8217;t&#8221;.  That just isn&#8217;t good enough for management scenarios.  As such, we use essentially the same model as every other management protocol, we render into a hierarchy of a fixed set of types.   That said, we allow you to control that hierarchy using the object serialization directives below.<br />
+</span></p>
+<p><span style="color:#1f497d">Enjoy!<br />
+</span></p>
+<p><span style="color:#1f497d">Jeffrey Snover [MSFT]<br/>Windows Management Partner Architect<br/>Visit the Windows PowerShell Team blog at:    <a href="http://blogs.msdn.com/PowerShell"/></span>http://blogs.msdn.com/PowerShell<span style="color:#1f497d"><br/>Visit the Windows PowerShell ScriptCenter at:  <a href="http://www.microsoft.com/technet/scriptcenter/hubs/msh.mspx"/></span>http://www.microsoft.com/technet/scriptcenter/hubs/msh.mspx<span style="color:#1f497d"><br/><br/></span><span style="color:red"><strong>#example 1: Serialize as string<br/></strong></span><span style="font-family:Courier New; font-size:10pt"><span style="color:maroon">@&#8221;<br/>&lt;Types&gt;<br/>    &lt;Type&gt;<br/>        &lt;Name&gt;System.Management.Automation.Test.MyBase&lt;/Name&gt;<br/>        &lt;Members&gt;<br/>            &lt;MemberSet&gt;<br/>                &lt;Name&gt;PSStandardMembers&lt;/Name&gt;<br/>                &lt;Members&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;SerializationMethod&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            String<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                &lt;/Members&gt;<br/>            &lt;/MemberSet&gt;<br/>        &lt;/Members&gt;<br/>    &lt;/Type&gt;<br/>&lt;/Types&gt;<br/>&#8220;</span>;</span><span style="color:#1f497d"><br/><br/></span><span style="color:red"><strong>#Example 2: Serialize as string and supply to string method<br/></strong></span><span style="font-family:Courier New; font-size:10pt"><span style="color:maroon">@&#8221;<br/>&lt;Types&gt;<br/>    &lt;Type&gt;<br/>        &lt;Name&gt;System.Management.Automation.Test.MyBase&lt;/Name&gt;<br/>        &lt;Members&gt;<br/>            &lt;MemberSet&gt;<br/>                &lt;Name&gt;PSStandardMembers&lt;/Name&gt;<br/>                &lt;Members&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;SerializationMethod&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            String<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                    &lt;ScriptProperty&gt;<br/>                    &lt;!&#8211;<br/>             In this case StringSerializationSource is ScriptProperty, but it could be another property<br/>             like an alias or a note.<br/>                     &#8211;&gt;<br/>                        &lt;Name&gt;StringSerializationSource&lt;/Name&gt;<br/>                        &lt;GetScriptBlock&gt;$this.p1&lt;/GetScriptBlock&gt;<br/>                    &lt;/ScriptProperty&gt;<br/>                &lt;/Members&gt;<br/>            &lt;/MemberSet&gt;<br/>        &lt;/Members&gt;<br/>    &lt;/Type&gt;<br/>&lt;/Types&gt;<br/>&#8220;</span>;<br/><br/></span><span style="color:red"><strong>#Example 3: Supply depth of serialization<br/></strong></span><span style="font-family:Courier New; font-size:10pt"><br/><span style="color:maroon">@&#8221;<br/>&lt;Types&gt;<br/>    &lt;Type&gt;<br/>        &lt;Name&gt;System.Management.Automation.Test.MyContainer&lt;/Name&gt;<br/>        &lt;Members&gt;<br/>            &lt;MemberSet&gt;<br/>                &lt;Name&gt;PSStandardMembers&lt;/Name&gt;<br/>                &lt;Members&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;SerializationDepth&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            1<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                &lt;/Members&gt;<br/>            &lt;/MemberSet&gt;<br/>        &lt;/Members&gt;<br/>    &lt;/Type&gt;<br/>&lt;/Types&gt;&#8221;</span>;<br/></span><span style="color:#1f497d"><br/></span><span style="color:red"><strong>#Example 4: Serialize specific properties:<br/></strong></span><span style="font-family:Courier New; font-size:10pt"><span style="color:maroon">&lt;Types&gt;<br/>    &lt;Type&gt;<br/>        &lt;Name&gt;System.Management.Automation.Test.MyBase&lt;/Name&gt;<br/>        &lt;Members&gt;<br/>            &lt;MemberSet&gt;<br/>                &lt;Name&gt;PSStandardMembers&lt;/Name&gt;<br/>                &lt;Members&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;SerializationMethod&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            SpecificProperties<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                    &lt;PropertySet&gt;<br/>                        &lt;Name&gt;PropertySerializationSet&lt;/Name&gt;<br/>                        &lt;ReferencedProperties&gt;<br/>                            &lt;Name&gt;P1&lt;/Name&gt;<br/>                        &lt;/ReferencedProperties&gt;<br/>                    &lt;!—<br/></span><span style="color:red"><strong>For object of type MyBase only property P1 is serialized.<br/></strong></span><span style="color:maroon">                     &#8211;&gt;<br/><br/>                    &lt;/PropertySet&gt;<br/>                &lt;/Members&gt;<br/>            &lt;/MemberSet&gt;<br/>        &lt;/Members&gt;<br/>    &lt;/Type&gt;<br/>    &lt;Type&gt;<br/>        &lt;Name&gt;System.Management.Automation.Test.MyDerived1&lt;/Name&gt;<br/>        &lt;Members&gt;<br/>            &lt;MemberSet&gt;<br/>                &lt;Name&gt;PSStandardMembers&lt;/Name&gt;<br/>                &lt;Members&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;SerializationMethod&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            SpecificProperties<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                    &lt;PropertySet&gt;<br/>                        &lt;Name&gt;PropertySerializationSet&lt;/Name&gt;<br/>                        &lt;ReferencedProperties&gt;<br/>                            &lt;Name&gt;P3&lt;/Name&gt;<br/>                        &lt;/ReferencedProperties&gt;<br/>                    &lt;!—<br/></span><span style="color:red"><strong>For object of type MyDerived1 (derived from MyBase) property P1 and P3 is serialized.<br/></strong></span><span style="color:maroon">                     &#8211;&gt;<br/>                    &lt;/PropertySet&gt;<br/>                &lt;/Members&gt;<br/>            &lt;/MemberSet&gt;<br/>        &lt;/Members&gt;<br/>    &lt;/Type&gt;<br/>    &lt;Type&gt;<br/>        &lt;Name&gt;System.Management.Automation.Test.MyDerived2&lt;/Name&gt;<br/>        &lt;Members&gt;<br/>            &lt;MemberSet&gt;<br/>                &lt;Name&gt;PSStandardMembers&lt;/Name&gt;<br/>                &lt;Members&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;SerializationMethod&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            SpecificProperties<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                    &lt;PropertySet&gt;<br/>                        &lt;Name&gt;PropertySerializationSet&lt;/Name&gt;<br/>                        &lt;ReferencedProperties&gt;<br/>                            &lt;Name&gt;P5&lt;/Name&gt;<br/>                        &lt;/ReferencedProperties&gt;<br/>                    &lt;!—<br/></span><span style="color:red"><strong>For object of type MyDerived2 (derived from MyDerived1) property P1, P3 and P5 is serialized.<br/></strong></span><span style="color:maroon">                     &#8211;&gt;<br/>                    &lt;/PropertySet&gt;<br/>                &lt;/Members&gt;<br/>            &lt;/MemberSet&gt;<br/>        &lt;/Members&gt;<br/>    &lt;/Type&gt;<br/>&lt;/Types&gt;<br/>&#8220;</span>;<br/><br/><span style="color:red"><strong>#Example 5: Serialize specific properties. Block inheritance of serialization property set in derived class.<br/></strong></span><span style="color:maroon">&lt;Types&gt;<br/>    &lt;Type&gt;<br/>        &lt;Name&gt;System.Management.Automation.Test.MyBase&lt;/Name&gt;<br/>        &lt;Members&gt;<br/>            &lt;MemberSet&gt;<br/>                &lt;Name&gt;PSStandardMembers&lt;/Name&gt;<br/>                &lt;Members&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;SerializationMethod&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            SpecificProperties<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                    &lt;PropertySet&gt;<br/>                        &lt;Name&gt;PropertySerializationSet&lt;/Name&gt;<br/>                        &lt;ReferencedProperties&gt;<br/>                            &lt;Name&gt;P1&lt;/Name&gt;<br/>                        &lt;/ReferencedProperties&gt;<br/>                    &lt;!—<br/></span><span style="color:red"><strong>For object of type MyBase P1 serialized.<br/></strong></span><span style="color:maroon">                     &#8211;&gt;<br/>                    &lt;/PropertySet&gt;<br/>                &lt;/Members&gt;<br/>            &lt;/MemberSet&gt;<br/>        &lt;/Members&gt;<br/>    &lt;/Type&gt;<br/>    &lt;Type&gt;<br/>        &lt;Name&gt;System.Management.Automation.Test.MyDerived1&lt;/Name&gt;<br/>        &lt;Members&gt;<br/>            &lt;MemberSet&gt;<br/>                &lt;Name&gt;PSStandardMembers&lt;/Name&gt;<br/>                &lt;Members&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;SerializationMethod&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            SpecificProperties<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;InheritPropertySerializationSet&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            false<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                    &lt;PropertySet&gt;<br/>                        &lt;Name&gt;PropertySerializationSet&lt;/Name&gt;<br/>                        &lt;ReferencedProperties&gt;<br/>                            &lt;Name&gt;P3&lt;/Name&gt;<br/>                        &lt;/ReferencedProperties&gt;<br/>                    &lt;!—<br/></span><span style="color:red"><strong>For object of type MyDerived1 (derived from MyBase) P3 is serialized. Property P1 is not serialized as inheritance is blocked.<br/></strong></span><span style="color:maroon">                     &#8211;&gt;<br/>                    &lt;/PropertySet&gt;<br/>                &lt;/Members&gt;<br/>            &lt;/MemberSet&gt;<br/>        &lt;/Members&gt;<br/>    &lt;/Type&gt;<br/>    &lt;Type&gt;<br/>        &lt;Name&gt;System.Management.Automation.Test.MyDerived2&lt;/Name&gt;<br/>        &lt;Members&gt;<br/>            &lt;MemberSet&gt;<br/>                &lt;Name&gt;PSStandardMembers&lt;/Name&gt;<br/>                &lt;Members&gt;<br/>                    &lt;NoteProperty&gt;<br/>                        &lt;Name&gt;SerializationMethod&lt;/Name&gt;<br/>                        &lt;Value&gt;<br/>                            SpecificProperties<br/>                        &lt;/Value&gt;<br/>                    &lt;/NoteProperty&gt;<br/>                    &lt;PropertySet&gt;<br/>                        &lt;Name&gt;PropertySerializationSet&lt;/Name&gt;<br/>                        &lt;ReferencedProperties&gt;<br/>                            &lt;Name&gt;P5&lt;/Name&gt;<br/>                        &lt;/ReferencedProperties&gt;<br/>                    &lt;!—<br/></span><span style="color:red"><strong>For object of type MyDerived2 (derived from MyDerived1) P3 and P5 is serialized.<br/></strong></span><span style="color:maroon">                     &#8211;&gt;<br/>                    &lt;/PropertySet&gt;<br/>                &lt;/Members&gt;<br/>            &lt;/MemberSet&gt;<br/>        &lt;/Members&gt;<br/>    &lt;/Type&gt;<br/>&lt;/Type<br/></span></span><br/></p>
+				<div class="back-to-top-wrap"><a href="#top-link" class="back-to-top">Back to<br>top</a></div>
+	</div><!-- .entry-content -->
+
+	
+</article><!-- #post-## -->
+
+				
+			
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+		<div id="secondary" class="widget-area" role="complementary">
+		
+		<aside id="msdn_bing_social_search-5" class="widget msdn_bing_social_search">		<div class="-widget-msdn-blogs-social-search msdn-blogs-social-search">
+			<div class="field-item search">
+								<form id="-widget-search-allblogs-container">
+					<span class="field-item-input">
+						<input id="-widget-search-textbox-allblogs" name="search-textbox-allblogs" type="search" class="search-field" maxlength="64" size="45" autocomplete="off" title="">
+						<input id="-widget-search-button-allblogs" name="search-button-allblogs" type="submit" class="search-submit" title="">
+					</span>
+				</form>
+													<form id="-widget-search-thisblog-container">
+					<span class="field-item-input">
+						<input id="-widget-search-textbox-thisblog" name="search-textbox-thisblog" type="search" class="search-field" maxlength="64" size="45" autocomplete="off" title="Search this blog with Bing">
+						<button id="-widget-search-button-thisblog" name="search-button-thisblog" type="submit" class="search-submit search-icon" title="Search this blog with Bing"></button>
+					</span>
+				</form>
+							</div>
+						<div class="bing-social-search-option">
+				<span class="bing-social-search-thisblog">
+				<input type="radio" name="SearchTypeRadio" value="thisblog" id="-widget-thisblog"><label for="-widget-thisblog" id="-widget-thisblog-text">Search this blog</label></span>
+				<span class="bing-social-search-allblogs">
+				<input type="radio" name="SearchTypeRadio" value="allblogs" id="-widget-allblogs" checked="checked"><label for="-widget-allblogs" id="-widget-allblogs-text">Search all blogs</label></span>
+			</div>
+			<script type="text/javascript">
+			jQuery(document).ready(function( $ ) {
+				var $elmSearchAll = $('#-widget-search-allblogs-container').hide();
+				var $elmSearchThis = $('#-widget-search-thisblog-container');
+
+				// try to get the blog id, if we fail, then we aren't on a blog and just use the regular search approach
+
+					$('#-widget-thisblog').click(function () {
+						var self = $(this);
+						if (self.is(':checked')) {
+							$elmSearchAll.hide();
+							$elmSearchThis.show();
+						}
+					});
+
+					$('#-widget-allblogs').click(function () {
+						var self = $(this);
+						if (self.is(':checked')) {
+							$elmSearchThis.hide();
+							$elmSearchAll.show();
+						}
+					});
+			});
+			</script>
+			
+			<script type="text/javascript">window.$ = window.jQuery;</script>
+							<script src="https://i4.services.social.microsoft.com/Search/Widgets/SearchBox.jss?boxid=-widget-search-textbox-allblogs&btnid=-widget-search-button-allblogs&brand=msdn&refinement=109&resref&addEnglish&watermark&focusOnInit=false&beta=0&iroot&overrideWatermark=false&rn&rq" type="text/javascript" language="javascript"></script>
+										<script src="https://i4.services.social.microsoft.com/Search/Widgets/SearchBox.jss?boxid=-widget-search-textbox-thisblog&btnid=-widget-search-button-thisblog&brand=msdn&refinement&resref&addEnglish&watermark&focusOnInit=false&beta=0&iroot&overrideWatermark=false&rn=Windows%2BPowerShell%2BBlog&rq=site%3Ahttps%3A%2F%2Fblogs.msdn.microsoft.com%2Fpowershell" type="text/javascript" language="javascript"></script>
+				
+		</div>
+		</aside><aside id="text-3" class="widget widget_text"><h2 class="widget-title color-highlight-bg">Top Server &#038; Tools Blogs</h2>			<div class="textwidget"><div class="widget-rss-link">
+	<a href="http://sxp.microsoft.com/feeds/3.0/ServerTools/ServerToolsTopPosts" target="_blank"><img src="https://msdnshared.blob.core.windows.net/media/TNBlogsFS/prod.evol.blogs.technet.com/CommunityServer.Blogs.Components.WeblogFiles/00/00/00/94/25/2110.metroRSS.png" /></a></div>
+
+<ul class="widget-link-list">
+    <li><a href="http://weblogs.asp.net/scottgu">ScottGu's Blog</a></li>
+    <li><a href="https://blogs.technet.microsoft.com/in_the_cloud/">Brad Anderson&rsquo;s "In the Cloud" Blog</a></li>
+    <li><a href="http://blogs.msdn.microsoft.com/bharry/">Brian Harry's Blog</a></li>
+    <li><a href="https://blogs.msdn.microsoft.com/stevengu/">Steve "Guggs" Guggenheimer's Blog</a></li>
+</ul></div>
+		</aside><aside id="msdn-sharing-3" class="widget msdn-sharing"><h2 class="widget-title color-highlight-bg">Share This Post</h2><div class='social-share-icons-wrap'><a onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=400, left=400, width=600, height=300' ); return false;" class="social-sharing social-sharing-facebook facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblogs.msdn.microsoft.com%2Fpowershell%2F2007%2F04%2F30%2Fobject-serialization-directives%2F">Share</a><a onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=400, left=400, width=600, height=300' ); return false;" class="social-sharing social-sharing-twitter twitter" href="https://twitter.com/intent/tweet/?text=Object+Serialization+Directives&url=https%3A%2F%2Fblogs.msdn.microsoft.com%2Fpowershell%2F2007%2F04%2F30%2Fobject-serialization-directives%2F">Share</a><a onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=400, left=400, width=600, height=300' ); return false;" class="social-sharing social-sharing-linkedin linkedin" href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblogs.msdn.microsoft.com%2Fpowershell%2F2007%2F04%2F30%2Fobject-serialization-directives%2F&title=Object+Serialization+Directives&source=https://blogs.msdn.microsoft.com/powershell">Share</a><a onclick="" class="social-sharing social-sharing-email email" href="mailto:?subject=Object Serialization Directives&body=Object Serialization Directives https%3A%2F%2Fblogs.msdn.microsoft.com%2Fpowershell%2F2007%2F04%2F30%2Fobject-serialization-directives%2F">Share</a><a onclick="" class="social-sharing social-sharing-rss rss" href="https://blogs.msdn.microsoft.com/powershell/feed/">Share</a></div></aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title color-highlight-bg">Recent Posts</h2>		<ul>
+					<li>
+				<a href="https://blogs.msdn.microsoft.com/powershell/2017/04/10/a-comparison-of-shell-and-scripting-language-security/">A Comparison of Shell and Scripting Language Security</a>
+							<span class="post-date">April 10, 2017</span>
+						</li>
+					<li>
+				<a href="https://blogs.msdn.microsoft.com/powershell/2017/03/30/regular-cadence-for-powershell-core-community-call/">Regular cadence for PowerShell Core Community Call</a>
+							<span class="post-date">March 30, 2017</span>
+						</li>
+					<li>
+				<a href="https://blogs.msdn.microsoft.com/powershell/2017/03/28/windows-management-framework-wmf-5-1-now-in-microsoft-update-catalog/">Windows Management Framework (WMF) 5.1 now in Microsoft Update Catalog</a>
+							<span class="post-date">March 28, 2017</span>
+						</li>
+					<li>
+				<a href="https://blogs.msdn.microsoft.com/powershell/2017/03/08/dsc-resource-kit-release-march-2017/">DSC Resource Kit Release March 2017</a>
+							<span class="post-date">March 8, 2017</span>
+						</li>
+				</ul>
+		</aside>		<aside id="tag_cloud-3" class="widget widget_tag_cloud"><h2 class="widget-title color-highlight-bg">Tags</h2><div class="tagcloud"><a href='https://blogs.msdn.microsoft.com/powershell/tag/advanced-functions/' class='tag-link-1871 tag-link-position-1' title='15 topics' style='font-size: 13.136363636364pt;'>Advanced Functions</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/cmdlet/' class='tag-link-1061 tag-link-position-2' title='8 topics' style='font-size: 10.181818181818pt;'>CMDLET</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/community/' class='tag-link-451 tag-link-position-3' title='15 topics' style='font-size: 13.136363636364pt;'>Community</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/ctp3/' class='tag-link-1241 tag-link-position-4' title='44 topics' style='font-size: 18.454545454545pt;'>CTP3</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/desired-state-configuration/' class='tag-link-201 tag-link-position-5' title='52 topics' style='font-size: 19.281818181818pt;'>Desired State Configuration</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/documentation/' class='tag-link-531 tag-link-position-6' title='17 topics' style='font-size: 13.845454545455pt;'>DOCUMENTATION</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/dotnet/' class='tag-link-2961 tag-link-position-7' title='11 topics' style='font-size: 11.718181818182pt;'>DOTNET</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/dsc/' class='tag-link-211 tag-link-position-8' title='68 topics' style='font-size: 20.7pt;'>DSC</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/dsc-resource-kit/' class='tag-link-281 tag-link-position-9' title='24 topics' style='font-size: 15.5pt;'>DSC Resource Kit</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/environment/' class='tag-link-2911 tag-link-position-10' title='6 topics' style='font-size: 9pt;'>ENVIRONMENT</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/faq/' class='tag-link-1381 tag-link-position-11' title='60 topics' style='font-size: 20.109090909091pt;'>FAQ</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/get-help/' class='tag-link-981 tag-link-position-12' title='9 topics' style='font-size: 10.772727272727pt;'>Get-Help</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/help/' class='tag-link-541 tag-link-position-13' title='6 topics' style='font-size: 9pt;'>Help</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/help-file/' class='tag-link-1281 tag-link-position-14' title='6 topics' style='font-size: 9pt;'>Help file</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/howto/' class='tag-link-551 tag-link-position-15' title='12 topics' style='font-size: 12.072727272727pt;'>HowTo</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/internal/' class='tag-link-2921 tag-link-position-16' title='9 topics' style='font-size: 10.772727272727pt;'>INTERNAL</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/jeffrey-snover/' class='tag-link-751 tag-link-position-17' title='20 topics' style='font-size: 14.554545454545pt;'>Jeffrey Snover</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/language/' class='tag-link-1051 tag-link-position-18' title='9 topics' style='font-size: 10.772727272727pt;'>LANGUAGE</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/module/' class='tag-link-391 tag-link-position-19' title='7 topics' style='font-size: 9.5909090909091pt;'>Module</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/modules/' class='tag-link-271 tag-link-position-20' title='17 topics' style='font-size: 13.845454545455pt;'>Modules</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/news/' class='tag-link-3355 tag-link-position-21' title='13 topics' style='font-size: 12.545454545455pt;'>News</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/philosophy/' class='tag-link-1901 tag-link-position-22' title='17 topics' style='font-size: 13.845454545455pt;'>PHILOSOPHY</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/powergui/' class='tag-link-1481 tag-link-position-23' title='7 topics' style='font-size: 9.5909090909091pt;'>PowerGUI</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/powershell/' class='tag-link-161 tag-link-position-24' title='89 topics' style='font-size: 22pt;'>PowerShell</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/powershell-4-0/' class='tag-link-191 tag-link-position-25' title='32 topics' style='font-size: 16.918181818182pt;'>PowerShell 4.0</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/powershell-5-0/' class='tag-link-601 tag-link-position-26' title='8 topics' style='font-size: 10.181818181818pt;'>PowerShell 5.0</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/powershell-deep-dive/' class='tag-link-1191 tag-link-position-27' title='16 topics' style='font-size: 13.490909090909pt;'>PowerShell Deep Dive</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/powershell-ise/' class='tag-link-481 tag-link-position-28' title='19 topics' style='font-size: 14.318181818182pt;'>PowerShell ISE</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/powershell-release/' class='tag-link-441 tag-link-position-29' title='14 topics' style='font-size: 12.9pt;'>PowerShell Release</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/powershell-v2/' class='tag-link-5 tag-link-position-30' title='20 topics' style='font-size: 14.554545454545pt;'>PowerShell V2</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/presentation/' class='tag-link-1361 tag-link-position-31' title='7 topics' style='font-size: 9.5909090909091pt;'>Presentation</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/quest/' class='tag-link-1341 tag-link-position-32' title='11 topics' style='font-size: 11.718181818182pt;'>Quest</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/releasedownload/' class='tag-link-471 tag-link-position-33' title='9 topics' style='font-size: 10.772727272727pt;'>Release/Download</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/remoting/' class='tag-link-611 tag-link-position-34' title='14 topics' style='font-size: 12.9pt;'>Remoting</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/sapien/' class='tag-link-1501 tag-link-position-35' title='13 topics' style='font-size: 12.545454545455pt;'>Sapien</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/shell/' class='tag-link-2941 tag-link-position-36' title='6 topics' style='font-size: 9pt;'>SHELL</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/teched/' class='tag-link-721 tag-link-position-37' title='11 topics' style='font-size: 11.718181818182pt;'>TechED</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/video/' class='tag-link-1691 tag-link-position-38' title='7 topics' style='font-size: 9.5909090909091pt;'>Video</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/windows-management-framework/' class='tag-link-171 tag-link-position-39' title='23 topics' style='font-size: 15.263636363636pt;'>Windows Management Framework</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/windows-powershell-4-0/' class='tag-link-181 tag-link-position-40' title='28 topics' style='font-size: 16.209090909091pt;'>Windows PowerShell 4.0</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/windows-powershell-5-0/' class='tag-link-591 tag-link-position-41' title='8 topics' style='font-size: 10.181818181818pt;'>Windows PowerShell 5.0</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/windows-powershell-desired-state-configuration/' class='tag-link-221 tag-link-position-42' title='58 topics' style='font-size: 19.872727272727pt;'>Windows PowerShell Desired State Configuration</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/windows-server-2012/' class='tag-link-1131 tag-link-position-43' title='14 topics' style='font-size: 12.9pt;'>Windows Server 2012</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/wmi/' class='tag-link-261 tag-link-position-44' title='17 topics' style='font-size: 13.845454545455pt;'>WMI</a>
+<a href='https://blogs.msdn.microsoft.com/powershell/tag/wpf/' class='tag-link-1541 tag-link-position-45' title='12 topics' style='font-size: 12.072727272727pt;'>WPF</a></div>
+</aside><aside id="msdn-archive-widget-3" class="widget msdn-archive-widget"><h2 class="widget-title color-highlight-bg">Archives</h2>	<li><a href='https://blogs.msdn.microsoft.com/powershell/2017/04/'>April 2017</a>&nbsp;(1)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2017/03/'>March 2017</a>&nbsp;(3)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2017/02/'>February 2017</a>&nbsp;(5)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2017/01/'>January 2017</a>&nbsp;(5)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2017/'>All of 2017</a>&nbsp;(14)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2016/'>All of 2016</a>&nbsp;(48)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2015/'>All of 2015</a>&nbsp;(69)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2014/'>All of 2014</a>&nbsp;(54)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2013/'>All of 2013</a>&nbsp;(29)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2012/'>All of 2012</a>&nbsp;(33)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2011/'>All of 2011</a>&nbsp;(29)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2010/'>All of 2010</a>&nbsp;(44)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2009/'>All of 2009</a>&nbsp;(169)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2008/'>All of 2008</a>&nbsp;(193)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2007/'>All of 2007</a>&nbsp;(208)</li>
+	<li><a href='https://blogs.msdn.microsoft.com/powershell/2006/'>All of 2006</a>&nbsp;(210)</li>
+</aside>
+	</div><!-- #secondary -->
+
+	
+	
+<div id="comments" class="comments-area">
+
+		<div class="comments-head">
+			</div>
+	
+		
+			
+			<ol class="comment-list">
+				
+			<li id="comment-52901" class="comment even thread-even depth-1">
+			<article id="div-comment-52901" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-right">
+						<time class="comment-time" datetime="2012-01-31T05:56:49+00:00">
+							5 years ago						</time>
+						<div class="comment-actions">
+													</div>
+					</div>
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/b8d115fc0cf1a9d93ff27fdbe9fb1bfd?s=40&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/b8d115fc0cf1a9d93ff27fdbe9fb1bfd?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />						<div class="author-wrap">
+							<span class="author-name"><a href='http://blogs.msdn.com/bertvanlandeghem_4000_hotmail.com/ProfileUrlRedirect.ashx' rel='external nofollow' class='url'>bertvanlandeghem@hotmail.com</a></span>						</div>
+					</div><!-- .comment-author -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi, &nbsp;could you perhaps point me out to some more documentation on this topic? More specifically on </p>
+<p>&lt;NoteProperty&gt;</p>
+<p>	&lt;Name&gt;SerializationMethod&lt;/Name&gt;</p>
+<p>	&lt;Value&gt;String&lt;/Value&gt;</p>
+<p>&lt;/NoteProperty&gt;</p>
+<p>&lt;ScriptProperty&gt;</p>
+<p>	&lt;Name&gt;StringSerializationSource&lt;/Name&gt;</p>
+<p>	&lt;GetScriptBlock&gt;$this.p1&lt;/GetScriptBlock&gt;</p>
+<p>&lt;/ScriptProperty&gt;</p>
+<p>I&#39;m using this as a way to work around the non-CLS compliant type error when using SharePoint 2007&#39;s SPContentDatabase object. It serializes OK using the standard ToString():</p>
+<p> &nbsp; &nbsp; &nbsp; &quot;SPContentDatabase Name=WSS_Content Parent=SPDatabaseServiceInstance Name=INST01&quot;</p>
+<p> but does not seem to take StringSerializationSource into account, with which I&#39;m trying to get the properties I want, e.g. $this.DisplayName.</p>
+<p>I&#39;ve made a custom sharepoint.types.ps1xml in which I define the properties I want in my report for all objects. Using this method, I could just pipe any object to ConvertTo-Xml, and get a decent xml report, without writing any code, and very portable too. </p>
+<p>Thanks for any suggestions,</p>
+<p>Bert.</p>
+				</div><!-- .comment-content -->
+
+				<div class="comment-metadata">
+									</div><!-- .comment-metadata -->
+
+			</article><!-- .comment-body -->
+
+		</li><!-- #comment-## -->
+
+			<li id="comment-13101" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-13101" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-right">
+						<time class="comment-time" datetime="2007-05-01T19:49:43+00:00">
+							10 years ago						</time>
+						<div class="comment-actions">
+													</div>
+					</div>
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/3651e719491c63d4424134d66fe53db9?s=40&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/3651e719491c63d4424134d66fe53db9?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />						<div class="author-wrap">
+							<span class="author-name"><a href='http://www.powershell.com' rel='external nofollow' class='url'>Karl Prosser</a></span>						</div>
+					</div><!-- .comment-author -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>plus if you used the default dotnet serialization.. 1)it would only serialize the userlying base system, not the extended type systems info, as that is more a wrapper, as far as dotnet is concerned. and 2) it couldn&#8217;t deserialize an object for which there is no currently type in memory for..</p>
+<p>So i understand why you do it the way you do as well (at least i think i do 😉</p>
+				</div><!-- .comment-content -->
+
+				<div class="comment-metadata">
+									</div><!-- .comment-metadata -->
+
+			</article><!-- .comment-body -->
+
+		</li><!-- #comment-## -->
+
+			<li id="comment-13061" class="comment even thread-even depth-1">
+			<article id="div-comment-13061" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-right">
+						<time class="comment-time" datetime="2007-05-01T12:58:14+00:00">
+							10 years ago						</time>
+						<div class="comment-actions">
+													</div>
+					</div>
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/3651e719491c63d4424134d66fe53db9?s=40&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/3651e719491c63d4424134d66fe53db9?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />						<div class="author-wrap">
+							<span class="author-name"><a href='http://blog.sapien.com' rel='external nofollow' class='url'>Don Jones</a></span>						</div>
+					</div><!-- .comment-author -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Does the String serialization directive simply call the object&#8217;s native ToString method? Meaning, if the object hasn&#8217;t overridden the ToString() method provided in System.Object, you just get the object&#8217;s type name? I could see where this would be useful for objects that have a fairly rich built-in ToString() method that provides better-formatted data than just grabbing the property values would provide.</p>
+				</div><!-- .comment-content -->
+
+				<div class="comment-metadata">
+									</div><!-- .comment-metadata -->
+
+			</article><!-- .comment-body -->
+
+		</li><!-- #comment-## -->
+
+			<li id="comment-13041" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-13041" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-right">
+						<time class="comment-time" datetime="2007-05-01T11:16:14+00:00">
+							10 years ago						</time>
+						<div class="comment-actions">
+													</div>
+					</div>
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/3651e719491c63d4424134d66fe53db9?s=40&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/3651e719491c63d4424134d66fe53db9?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />						<div class="author-wrap">
+							<span class="author-name"><a href='http://blog.sapien.com' rel='external nofollow' class='url'>Don Jones</a></span>						</div>
+					</div><!-- .comment-author -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>A million, zillion thanks. Realizing that it&#8217;s difficult to document all these complexities &#8211; especially stuff like this which won&#8217;t be of immediate use to *every* administrator &#8211; these under-the-hood blog peaks are extraordinarily useful.</p>
+				</div><!-- .comment-content -->
+
+				<div class="comment-metadata">
+									</div><!-- .comment-metadata -->
+
+			</article><!-- .comment-body -->
+
+		</li><!-- #comment-## -->
+			</ol><!-- .comment-list -->
+
+			
+		
+				<p class="no-comments">Comments are closed.</p>
+	
+</div><!-- #comments -->
+
+
+	
+
+
+	</div><!-- #content -->
+
+	<div class="footer-wrap">
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info">
+
+				<div class="footer-copyright">
+					<p>&copy; 2017 Microsoft Corporation.</p>
+				</div>
+
+				<div class="bottom-footer-menu">
+					<div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="footer-menu"><li id="menu-item-11301" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11301"><a href="http://msdn.microsoft.com/cc300389">Terms of Use</a></li>
+<li id="menu-item-11311" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11311"><a href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx">Trademarks</a></li>
+<li id="menu-item-11321" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11321"><a href="http://go.microsoft.com/fwlink/?LinkId=248681">Privacy &amp; Cookies</a></li>
+</ul></div>				</div>
+
+				<div class="footer-logo">
+					<!--<div class="copyright-logo" role="img" aria-label="Microsoft logo"></div>-->
+				</div><!-- .footer-logo -->
+
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- .footer-wrap -->
+
+</div><!-- #page -->
+
+
+	<script type="text/javascript">
+	jQuery(document).ready(function($){
+		$login_link = $( 'a[href*="wp-login.php?"]' );
+				$login_link.on( 'click', function( evt ) {
+			// evt.preventDefault();
+						// console.log( 'cookie-set', '/powershell/2007/04/30/object-serialization-directives/' );
+			$.cookie( 'aadsso-redirect', '/powershell/2007/04/30/object-serialization-directives/', { expires: 1, path: '/' });
+		});
+	});
+	</script>
+		<script>
+		jQuery(window).load(function () {
+			// Fix Bug #644092:MAS36: Page number
+			jQuery('div.nav-links>a.page-numbers').each(function(){
+				jQuery(this).attr('aria-label', 'Page ' + jQuery(this).html());
+			});
+
+			// Fix Bug #633981:MAS20B:  Talkback: Talkback announces link for Number of Comments as 'Number link'
+			jQuery('span.comments-link>a').each(function () {
+				var num = parseInt(jQuery(this).html());
+				if (isNaN(num)) {
+					return false;
+				}
+				var content = num + (num === 1 ? ' comment' : ' comments');
+				jQuery(this).attr({
+					'aria-label': content,
+					'title': content
+				});
+			});
+
+
+			jQuery('#search-option>div').each(function () {
+				jQuery(this).attr('aria-label',jQuery('span.search-text',this).html());
+			});
+
+			// Fix Bug #671896:MAS40B :Inspect: Header: "Name" property is not descriptive for  "Microsoft | TechNet" link (logo).
+			var currentHost = location.hostname;
+			if (currentHost.indexOf('msdn') !== -1) {
+				jQuery('#home-link').attr('aria-label','Microsoft Developer');
+			} else if (currentHost.indexOf('technet') !== -1) {
+				jQuery('#home-link').attr('aria-label','Microsoft Technet');
+			}
+
+			// Detect High Contrast Mode in non IE/Edge Browsers
+			jQuery('html').css('background-image', 'url("data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==")');
+			if (jQuery('html').css('background-image') === 'none') {
+				jQuery('html').attr('data-high-contrast', 'true');
+			}
+
+			// Fix Bug #670327:MAS40B: Inspect: Header: "Localized control type" property is incorrect for the header elements.
+			// Fix Bug #683788:MAS40B: TalkBack: Header: For menu items in technet link menu bar, expand/collapse pattern available, is not announced by TalkBack 
+			jQuery('#site-navigation>div>ul>li>a').attr('role', 'button').attr('aria-expanded', 'false').click(function () {
+				if (jQuery(this).attr('aria-expanded') === 'true') {
+					jQuery(this).attr('aria-expanded', 'false');
+				} else {
+					jQuery(this).attr('aria-expanded', 'true');
+				}
+			});
+
+		});
+	</script>
+		<!--ADD WEDCS SCRIPT-->
+	<div id="_WEDCSInsertedData" style="display: none;"></div>
+	<script type="text/javascript">
+		jQuery( window ).load(
+			function() {
+				window.varSegmentation = 0;
+				window.varClickTracking = 1;
+				window.varCustomerTracking = 1;
+				window.varAutoFirePV = 1;
+				window.Route = ""; // was 23470 in the windows theme framework
+				window.Ctrl = "";
+
+								var blogPost = {};
+
+								blogPost.permalink = 'https://blogs.msdn.microsoft.com/powershell/2007/04/30/object-serialization-directives/';
+				blogPost.title = 'Object Serialization Directives';
+				blogPost.author = 'PowerShell Team';
+				blogPost.post_date = '2007-04-30 22:37:46';
+				blogPost.category = 'Uncategorized';
+				blogPost.tag = '';
+				blogPost.comment_number = '4';
+								window.blogPost = blogPost;
+
+				var wedcs_script = document.createElement('script');
+				wedcs_script.type = 'text/javascript';
+				wedcs_script.async = true;
+				wedcs_script.src = 'https://blogs.msdn.microsoft.com/powershell/wp-content/mu-plugins/wedcs-script/ms2_blogs.js';
+				document.getElementsByTagName('body')[0].appendChild(wedcs_script);
+			});
+	</script>
+	<!--
+	<script src="//c.microsoft.com/ms.js" type="text/javascript"></script>
+	<noscript><img alt="" width="1" height="1" src="http://c.microsoft.com/trans_pixel.aspx"/></noscript>
+	-->
+		<script type="text/javascript">
+			jQuery( window ).load(
+				function () {
+					var stylesheet = document.createElement('link');
+					stylesheet.href = 'https://blogs.msdn.microsoft.com/powershell/wp-content/plugins/simple-follow-me-social-buttons-widget/assets/css/style.css?ver=3.3.3';
+					stylesheet.rel = 'stylesheet';
+					stylesheet.type = 'text/css';
+					document.getElementsByTagName('head')[0].appendChild(stylesheet);
+				});
+		</script>
+				<script type="text/javascript">
+			jQuery( window ).load(
+				function () {
+					var stylesheet = document.createElement('link');
+					stylesheet.href = 'https://blogs.msdn.microsoft.com/powershell/wp-content/plugins/simple-follow-me-social-buttons-widget/assets/css/icons.css?ver=3.3.3';
+					stylesheet.rel = 'stylesheet';
+					stylesheet.type = 'text/css';
+					document.getElementsByTagName('head')[0].appendChild(stylesheet);
+				});
+		</script>
+				<script type="text/javascript">
+			jQuery( window ).load(
+				function () {
+					var script = document.createElement('script');
+					script.src = 'https://blogs.msdn.microsoft.com/powershell/wp-content/plugins/simple-follow-me-social-buttons-widget/assets/js/front-widget.js?ver=3.3.3';
+					script.type = 'text/javascript';
+					script.async = true;
+					document.getElementsByTagName('body')[0].appendChild(script);
+				});
+		</script>
+		
+		<span id='page-view-tracking-info' blog-id='2184' post-id='8051'></span>
+		<script type="text/javascript">
+			// Check for compatibility before IE8
+			if (!Date.now) {
+ 				 Date.now = function() { return new Date().getTime(); };
+			}
+			jQuery( window ).load( function() {
+				jQuery.ajax({
+					url: 'https://blogs.msdn.microsoft.com/powershell/wp-admin/admin-ajax.php',
+					type: 'get',
+					data: {
+						action: 'track_page_view',
+						track_page_view_post_id: jQuery('#page-view-tracking-info').attr('post-id'),
+						track_page_view_blog_id: jQuery('#page-view-tracking-info').attr('blog-id'),
+						track_page_view_post_url: window.location.href.split('?')[0],
+						timestamp: Date.now()
+						}
+				});
+			});
+		</script>	<script type="text/javascript">
+		var addthis_config =
+		    {
+				data_track_addressbar: false,
+	        	ui_use_css: false,
+	        	ui_508_compliant: true
+	    	}
+	</script>
+
+<script>
+dataLayer = [[]];
+</script>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PLR87W" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>jQuery(window).load(function(){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLR87W')});
+</script>
+<!-- End Google Tag Manager -->
+	<script type="text/javascript">
+		jQuery( window ).load(
+			function(i) {
+				var n = window,
+					t = document,
+					e = n.console,
+					f, u, r, o;
+				typeof e == "undefined" && (f = function() {}, e = {
+					log: f,
+					warn: f,
+					assert: f,
+					clear: f,
+					dir: f,
+					error: f,
+					info: f,
+					profile: f,
+					profileEnd: f
+				}), u = {
+					appendToHead: function(n) {
+						if (t.getElementsByTagName("head").length > 0) t.getElementsByTagName("head")[0].appendChild(n);
+						else throw "bootstrapper: no head element found.";
+					},
+					appendToBody: function(n) {
+						if (t.getElementsByTagName("body").length > 0) t.getElementsByTagName("body")[0].appendChild(n);
+						else throw "bootstrapper: no body element found.";
+					},
+					addStyleElement: function(n) {
+						var i = t.createElement("link");
+						i.setAttribute("href", n), i.setAttribute("rel", "stylesheet"), i.setAttribute("type", "text/css"), u.appendToHead(i)
+					},
+					loadFiles: function(n, t) {
+						if (t !== i && u.recursiveScriptLoad(0, t), n !== i)
+							for (var r = 0, r = 0; r < n.length; r++) u.addStyleElement(n[r])
+					},
+					recursiveScriptLoad: function(n, t) {
+						t[n] && u.addScriptElement(t[n], function() {
+							u.recursiveScriptLoad(n + 1, t)
+						})
+					},
+					isCompatible: function(n, t) {
+						var r, u, i;
+						return (r = n.split("."), u = t.split("."), i = function(n) {
+							return isNaN(n) ? 0 : n
+						}, i(r[0]) > i(u[0]) || i(r[0]) === i(u[0]) && i(r[1]) > i(u[1]) || i(r[0]) === i(u[0]) && i(r[1]) === i(u[1]) && i(r[2]) >= i(u[2])) ? !0 : !1
+					},
+					addScriptElement: function(i, r) {
+						var f, e;
+						f = t.createElement("script"), f.setAttribute("type", "text/javascript"), f.async = true, f.setAttribute("src", i), f.attachEvent ? (e = function() {
+							setTimeout(function() {
+								typeof n.jQuery != "undefined" && r ? r() : e()
+							}, 10)
+						}, e()) : f.onload = r, u.appendToBody(f)
+					},
+					load: function(n, t) {
+						setTimeout(function() {
+							if (typeof n == "undefined") try {
+								u.addScriptElement(t.defaultPath, function() {
+									u.loadFiles(t.cssFiles, t.jsFiles)
+								});
+								return
+							} catch (i) {
+								e.warn("bootstrapper: failed to load default jQuery")
+							} else if (!u.isCompatible(n.fn.jquery, t.minimumVersion)) {
+								e.warn("bootstrapper: jQuery version is too old to load UserCard. Use v1.4.2 or later.");
+								return
+							}
+							u.loadFiles(t.cssFiles, t.jsFiles)
+						}, 0)
+					}
+				}, r = {
+					host: n.location.host,
+					search: "",
+					protocol: "https"
+				}, r.host = "widgets.services.microsoft.com", r.search = "?brand=msdn&lang=en&ver=4.9.0.0", r.protocol = "https:", o = {
+					minimumVersion: "1.1.2",
+					defaultPath: "https://code.jquery.com/jquery-1.4.2.min.js",
+					cssFiles: [r.protocol + "//" + r.host + "/v1/UnifiedBaseballCard.css" + r.search, r.protocol + "//" + r.host + "/v1/usercard.css" + r.search],
+					jsFiles: ["https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js", r.protocol + "//" + r.host + "/v1/jquery.timeago.js" + r.search, r.protocol + "//" + r.host + "/v1/jquery.textfill.js" + r.search, r.protocol + "//" + r.host + "/v1/widgets.js" + r.search]
+				}, typeof n.jQuery == "undefined" ? u.load(i, o) : u.load(n.jQuery, o)
+			}
+		);
+	</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wds_ratings_config = {"ajaxurl":"https:\/\/blogs.msdn.microsoft.com\/powershell\/wp-admin\/admin-ajax.php","user_id":"0","nonce":"76250539b7","debug":"","no_auth_alert":"You must be logged in to rate this article.","repeatedly_vote_alert":"You can not vote repeatedly in a short time","allow_anonymous_rating":"","blog_id":"2184","rating_limit_login_user":"1","rating_limit_anonymous":"1","hide_rating_post_ids":""};
+var wds_ratings_config = {"ajaxurl":"https:\/\/blogs.msdn.microsoft.com\/powershell\/wp-admin\/admin-ajax.php","user_id":"0","nonce":"76250539b7","debug":"","no_auth_alert":"You must be logged in to rate this article.","repeatedly_vote_alert":"You can not vote repeatedly in a short time","allow_anonymous_rating":"","blog_id":"2184","rating_limit_login_user":"1","rating_limit_anonymous":"1","hide_rating_post_ids":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://blogs.msdn.microsoft.com/powershell/wp-content/plugins/wds-ratings/wds-ratings.js?ver=20161014'></script>
+<script type='text/javascript' src='https://blogs.msdn.microsoft.com/powershell/wp-content/themes/msdn-network-parent/js/onclick-menu-cloud.min.js?ver=12052016'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var msdnparent = {"is_search":"","is_singular":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://blogs.msdn.microsoft.com/powershell/wp-content/themes/msdn-network-parent/js/project.min.js?ver=12272016'></script>
+<script type='text/javascript' src='https://blogs.msdn.microsoft.com/powershell/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='https://blogs.msdn.microsoft.com/powershell/wp-content/themes/msdn-network-parent/js/vendor/jquery.cookie.js?ver=12272016'></script>
+
+
+</body>
+</html>
