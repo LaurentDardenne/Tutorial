@@ -1,0 +1,2340 @@
+﻿<helpItems schema="maml">
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>New-ValidationFunction</command:name>
+      <maml:description>
+        <maml:para>TODO Add Short description</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>New</command:verb>
+      <command:noun>ValidationFunction</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>TODO Add Long description</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Path Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>FunctionName</maml:name>
+          <maml:description>
+            <maml:para>TODO Add FunctionName Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Verbose</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Verbose Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Debug</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Debug Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>New-ValidationFunction</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutBuffer</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutBuffer Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Path Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>FunctionName</maml:name>
+        <maml:description>
+          <maml:para>TODO Add FunctionName Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Verbose</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Verbose Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Debug</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Debug Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutBuffer</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutBuffer Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>TODO Add New-ValidationFunction inputType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>TODO Add New-ValidationFunction returnType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet>
+      <maml:title />
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------  EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&amp;gt;</maml:para>
+        </maml:introduction>
+        <dev:code>TODO Add New-ValidationFunction Example code</dev:code>
+        <dev:remarks>
+          <maml:para>TODO Add New-ValidationFunction Example Comment</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>New-ValidationFunction</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Test-ContainsWildcardCharacters</command:name>
+      <maml:description>
+        <maml:para>TODO Add Short description</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Test</command:verb>
+      <command:noun>ContainsWildcardCharacters</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>TODO Add Long description</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <command:name>Test-ContainsWildcardCharacters</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Verbose</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Verbose Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ContainsWildcardCharacters</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Debug</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Debug Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ContainsWildcardCharacters</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ContainsWildcardCharacters</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ContainsWildcardCharacters</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ContainsWildcardCharacters</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ContainsWildcardCharacters</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ContainsWildcardCharacters</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutBuffer</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutBuffer Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Verbose</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Verbose Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Debug</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Debug Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutBuffer</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutBuffer Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>TODO Add Test-ContainsWildcardCharacters inputType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>TODO Add Test-ContainsWildcardCharacters returnType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet>
+      <maml:title />
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------  EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&amp;gt;</maml:para>
+        </maml:introduction>
+        <dev:code>TODO Add Test-ContainsWildcardCharacters Example code</dev:code>
+        <dev:remarks>
+          <maml:para>TODO Add Test-ContainsWildcardCharacters Example Comment</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Test-ContainsWildcardCharacters</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Test-IsImplementingInterface</command:name>
+      <maml:description>
+        <maml:para>TODO Add Short description</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Test</command:verb>
+      <command:noun>IsImplementingInterface</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>TODO Add Long description</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <command:name>Test-IsImplementingInterface</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Interface</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Interface Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Type</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsImplementingInterface</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Verbose</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Verbose Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsImplementingInterface</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Debug</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Debug Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsImplementingInterface</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsImplementingInterface</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsImplementingInterface</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsImplementingInterface</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsImplementingInterface</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsImplementingInterface</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutBuffer</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutBuffer Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Interface</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Interface Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Type</command:parameterValue>
+        <dev:type>
+          <maml:name>Type</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Verbose</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Verbose Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Debug</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Debug Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutBuffer</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutBuffer Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>TODO Add Test-IsImplementingInterface inputType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>TODO Add Test-IsImplementingInterface returnType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet>
+      <maml:title />
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------  EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&amp;gt;</maml:para>
+        </maml:introduction>
+        <dev:code>TODO Add Test-IsImplementingInterface Example code</dev:code>
+        <dev:remarks>
+          <maml:para>TODO Add Test-IsImplementingInterface Example Comment</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Test-IsImplementingInterface</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Test-IsSubClassOf</command:name>
+      <maml:description>
+        <maml:para>TODO Add Short description</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Test</command:verb>
+      <command:noun>IsSubClassOf</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>TODO Add Long description</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <command:name>Test-IsSubClassOf</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Class</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Class Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Type</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsSubClassOf</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Verbose</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Verbose Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsSubClassOf</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Debug</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Debug Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsSubClassOf</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsSubClassOf</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsSubClassOf</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsSubClassOf</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsSubClassOf</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsSubClassOf</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutBuffer</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutBuffer Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Class</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Class Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Type</command:parameterValue>
+        <dev:type>
+          <maml:name>Type</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Verbose</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Verbose Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Debug</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Debug Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutBuffer</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutBuffer Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>TODO Add Test-IsSubClassOf inputType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>TODO Add Test-IsSubClassOf returnType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet>
+      <maml:title />
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------  EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&amp;gt;</maml:para>
+        </maml:introduction>
+        <dev:code>TODO Add Test-IsSubClassOf Example code</dev:code>
+        <dev:remarks>
+          <maml:para>TODO Add Test-IsSubClassOf Example Comment</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Test-IsSubClassOf</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Test-IsWMIClass</command:name>
+      <maml:description>
+        <maml:para>TODO Add Short description</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Test</command:verb>
+      <command:noun>IsWMIClass</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>TODO Add Long description</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <command:name>Test-IsWMIClass</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ClassName</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ClassName Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsWMIClass</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Verbose</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Verbose Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsWMIClass</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Debug</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Debug Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsWMIClass</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsWMIClass</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsWMIClass</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsWMIClass</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsWMIClass</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-IsWMIClass</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutBuffer</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutBuffer Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ClassName</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ClassName Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Verbose</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Verbose Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Debug</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Debug Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutBuffer</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutBuffer Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>TODO Add Test-IsWMIClass inputType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>TODO Add Test-IsWMIClass returnType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet>
+      <maml:title />
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------  EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&amp;gt;</maml:para>
+        </maml:introduction>
+        <dev:code>TODO Add Test-IsWMIClass Example code</dev:code>
+        <dev:remarks>
+          <maml:para>TODO Add Test-IsWMIClass Example Comment</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Test-IsWMIClass</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Test-PathMustExist</command:name>
+      <maml:description>
+        <maml:para>TODO Add Short description</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Test</command:verb>
+      <command:noun>PathMustExist</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>TODO Add Long description</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <command:name>Test-PathMustExist</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Verbose</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Verbose Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-PathMustExist</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Debug</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Debug Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-PathMustExist</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-PathMustExist</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-PathMustExist</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-PathMustExist</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-PathMustExist</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-PathMustExist</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutBuffer</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutBuffer Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Verbose</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Verbose Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Debug</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Debug Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutBuffer</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutBuffer Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>TODO Add Test-PathMustExist inputType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>TODO Add Test-PathMustExist returnType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet>
+      <maml:title />
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------  EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&amp;gt;</maml:para>
+        </maml:introduction>
+        <dev:code>TODO Add Test-PathMustExist Example code</dev:code>
+        <dev:remarks>
+          <maml:para>TODO Add Test-PathMustExist Example Comment</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Test-PathMustExist</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Test-ProviderConstraint</command:name>
+      <maml:description>
+        <maml:para>TODO Add Short description</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Test</command:verb>
+      <command:noun>ProviderConstraint</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>TODO Add Long description</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <command:name>Test-ProviderConstraint</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Providername</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Providername Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ProviderConstraint</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Verbose</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Verbose Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ProviderConstraint</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Debug</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Debug Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ProviderConstraint</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ProviderConstraint</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ProviderConstraint</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ProviderConstraint</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ProviderConstraint</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ProviderConstraint</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutBuffer</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutBuffer Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Providername</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Providername Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Verbose</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Verbose Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Debug</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Debug Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutBuffer</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutBuffer Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>TODO Add Test-ProviderConstraint inputType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>TODO Add Test-ProviderConstraint returnType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet>
+      <maml:title />
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------  EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&amp;gt;</maml:para>
+        </maml:introduction>
+        <dev:code>TODO Add Test-ProviderConstraint Example code</dev:code>
+        <dev:remarks>
+          <maml:para>TODO Add Test-ProviderConstraint Example Comment</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Test-ProviderConstraint</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Test-ScopedItemOptions</command:name>
+      <maml:description>
+        <maml:para>TODO Add Short description</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Test</command:verb>
+      <command:noun>ScopedItemOptions</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>TODO Add Long description</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <command:name>Test-ScopedItemOptions</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Verbose</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Verbose Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ScopedItemOptions</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Debug</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Debug Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ScopedItemOptions</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ScopedItemOptions</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ScopedItemOptions</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ScopedItemOptions</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ScopedItemOptions</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ScopedItemOptions</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutBuffer</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutBuffer Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Verbose</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Verbose Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Debug</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Debug Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutBuffer</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutBuffer Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>TODO Add Test-ScopedItemOptions inputType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>TODO Add Test-ScopedItemOptions returnType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet>
+      <maml:title />
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------  EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&amp;gt;</maml:para>
+        </maml:introduction>
+        <dev:code>TODO Add Test-ScopedItemOptions Example code</dev:code>
+        <dev:remarks>
+          <maml:para>TODO Add Test-ScopedItemOptions Example Comment</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Test-ScopedItemOptions</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Test-ServiceStatus</command:name>
+      <maml:description>
+        <maml:para>TODO Add Short description</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Test</command:verb>
+      <command:noun>ServiceStatus</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>TODO Add Long description</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>InputObject</maml:name>
+          <maml:description>
+            <maml:para>TODO Add InputObject Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Status</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Status Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ServiceControllerStatus</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Verbose</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Verbose Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>Debug</maml:name>
+          <maml:description>
+            <maml:para>TODO Add Debug Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningAction</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningAction Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">ActionPreference</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>ErrorVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add ErrorVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>WarningVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add WarningVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutVariable</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutVariable Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:name>Test-ServiceStatus</command:name>
+        <command:parameter require="false" variableLength="false" globbing="false" pipelineInput="false" postion="0">
+          <maml:name>OutBuffer</maml:name>
+          <maml:description>
+            <maml:para>TODO Add OutBuffer Description</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>InputObject</maml:name>
+        <maml:description>
+          <maml:para>TODO Add InputObject Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Status</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Status Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ServiceControllerStatus</command:parameterValue>
+        <dev:type>
+          <maml:name>ServiceControllerStatus</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Verbose</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Verbose Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>Debug</maml:name>
+        <maml:description>
+          <maml:para>TODO Add Debug Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningAction</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningAction Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ActionPreference</command:parameterValue>
+        <dev:type>
+          <maml:name>ActionPreference</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>ErrorVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add ErrorVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>WarningVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add WarningVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutVariable</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutVariable Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false (ByValue)" position="0">
+        <maml:name>OutBuffer</maml:name>
+        <maml:description>
+          <maml:para>TODO Add OutBuffer Description</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue />
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>TODO Add Test-ServiceStatus inputType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>TODO Add Test-ServiceStatus returnType</maml:name>
+          <maml:uri />
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description />
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <maml:alertSet>
+      <maml:title />
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------------  EXAMPLE 1 --------------</maml:title>
+        <maml:introduction>
+          <maml:para>C:\PS&amp;gt;</maml:para>
+        </maml:introduction>
+        <dev:code>TODO Add Test-ServiceStatus Example code</dev:code>
+        <dev:remarks>
+          <maml:para>TODO Add Test-ServiceStatus Example Comment</maml:para>
+          <maml:para />
+          <maml:para />
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Test-ServiceStatus</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+</helpItems>
