@@ -1,0 +1,5 @@
+G:\PS\Synthetic\MembresSynthetique\Synthetique\obj\Debug\ResolveAssemblyReference.cache
+G:\PS\Synthetic\MembresSynthetique\Synthetique\bin\Debug\Synthetique.dll
+G:\PS\Synthetic\MembresSynthetique\Synthetique\bin\Debug\Synthetique.pdb
+G:\PS\Synthetic\MembresSynthetique\Synthetique\obj\Debug\Synthetique.dll
+G:\PS\Synthetic\MembresSynthetique\Synthetique\obj\Debug\Synthetique.pdb

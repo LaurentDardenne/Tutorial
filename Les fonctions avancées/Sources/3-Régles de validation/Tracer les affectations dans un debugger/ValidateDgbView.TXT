@@ -1,0 +1,69 @@
+L’attribut ValidateScript peut être utilisé pour créer des règles personnelles de validation de paramètre 
+ou pour tracer ses modifications.
+Todo exemple plus simple :
+Prenons le cas où l’on souhaite afficher des informations dans un debugger :
+
+function ValidateDgbView($Variable, 
+                         $CallerInvocation,
+                         [string] $Format="{0} = {1}" )
+{ 
+   if ($MyInvocation.CommandOrigin -eq "Internal")
+   {
+     $msg="Exécution via un attribut"
+     $Data=$_
+   }
+   else 
+   {
+     $msg="Exécution via un runspace"
+      #on récupère les données via $input (cf. bloc End)
+     $Data=$input|% {$_}
+   }
+   Write-host $msg -fore green
+   [System.Diagnostics.Debug]::WriteLine("`$Data")
+  
+   #cf. http://projets.developpez.com/wiki/add-lib
+   Write-Properties $Data -Silently
+   
+   [System.Diagnostics.Debug]::WriteLine("`$Variable")
+   Write-Properties $Variable.Value –Silently
+   #Write-Properties $CallerInvocation
+     
+    #Ecrit sur le debugger actif, s'il en existe un. 
+    #cf. http://technet.microsoft.com/en-us/sysinternals/bb896647.aspx 
+   [System.Diagnostics.Debug]::WriteLine( ("Ancienne valeur "+ $Format -F $Variable.Name, $Variable.Value) )
+   [System.Diagnostics.Debug]::WriteLine( ("Nouvelle valeur "+ $Format -F $Variable.Name, $_) )
+
+   #Ici on renvoie toujours vrai, 
+   #on ne fait que tracer.
+   $True
+}
+
+Le premier test sur la variable $MyInvocation.CommandOrigin détermine si le code est exécuté par le runtime via 
+un attribut ou via une affectation dans un runspace.
+Le paramètre $CallerInvocation peut être utilisée pour retrouver quelques informations du contexte de l’appelant.
+Sachez que le contenu de la variable $MyInvocation, celle du contexte de la fonction ValidateDgbView, sera toujours
+ identique lors d’un appel via un attribut :
+
+Function Test{
+    Param (
+       [ValidateScript({ValidateDgbView (gv Date) $myinvocation})]
+       [DateTime] $Date
+)
+   #Ici la variable $Date existe
+  $Date=[DateTime]::Now.AddDays(-1)
+}
+
+ #Lors du premier appel de la fonction, 
+ #la variable $Date n'existe pas encore,
+ #mais dans ValidateDgbView on connait au moins la nouvelle valeur: $_
+Test (Get-Date) 
+
+On passe en paramètre le nom de la variable $Date au paramètre $Variable de la fonction ValidateDgbView afin de 
+connaître son ancienne valeur. On peut donc imaginer une règle voulant que la nouvelle valeur affectée soit toujours
+supérieure à l’ancienne. Il reste possible d’utiliser la fonction dans un autre contexte que celui d’un attribut,
+ mais ce sera à vous de coder cette prise en charge :
+
+ #Exécution via un runspace
+Get-Date|ValidateDgbView
+
+Note : Les nouvelles possibilités de debug de powershell version 2 pourraient rendre le même service.

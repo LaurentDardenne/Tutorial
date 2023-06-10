@@ -1,0 +1,235 @@
+﻿RUBRIQUE
+  about_Job_Details
+
+DESCRIPTION COURTE
+  Fournit des détails sur les tâches en arrière-plan des ordinateurs 
+  locaux et distants.
+    
+DESCRIPTION DÉTAILLÉE
+   Cette rubrique explique ce qu'est une tâche en arrière-plan et 
+   fournit des informations techniques sur le fonctionnement de ce 
+   type de tâche dans Windows PowerShell.
+
+   Cette rubrique vient compléter les rubriques about_Jobs et 
+   about_Remote_Jobs.
+
+   Important : les tâches en arrière-plan démarrées à l'aide de 
+               Start-Job ou du paramètre AsJob de Invoke-Command 
+               reposent sur l'infrastructure de communication à 
+               distance Windows PowerShell. Pour utiliser ces 
+               fonctionnalités, Windows PowerShell doit être 
+               configuré pour la communication à distance, 
+               même si la tâche en arrière-plan s'exécute 
+               uniquement sur l'ordinateur local. Pour plus 
+               d'informations, consultez about_Remote_Requirements.
+
+
+ À PROPOS DES TÂCHES EN ARRIÈRE-PLAN
+    Une tâche en arrière-plan exécute une commande ou une expression 
+    de façon asynchrone. Elle peut exécuter une applet de commande, 
+    une fonction, un script ou toute autre tâche basée sur une 
+    commande. Elle est conçue pour exécuter des commandes qui 
+    prennent un certain temps, mais vous pouvez l'utiliser pour 
+    exécuter tout type de commande à l'arrière-plan.
+
+    Lorsqu'une commande synchrone s'exécute, l'invite de commandes de 
+    Windows PowerShell est supprimée jusqu'à ce que la commande soit 
+    terminée. À l'inverse, une tâche en arrière-plan ne supprime pas 
+    l'invite Windows PowerShell. Une commande servant à démarrer une 
+    tâche en arrière-plan retourne un objet de traitement. L'invite 
+    se réaffiche immédiatement pour que vous puissiez travailler sur 
+    d'autres tâches pendant que la tâche en arrière-plan s'exécute.
+  
+    Toutefois, lorsque vous démarrez une tâche en arrière-plan, vous 
+    n'obtenez pas immédiatement les résultats même si elle s'exécute très 
+    rapidement. L'objet de traitement retourné contient des informations 
+    utiles sur la tâche, mais ne contient pas les résultats de la tâche. 
+    Vous devez exécuter une commande distincte pour obtenir les résultats 
+    de tâche. Vous pouvez également exécuter des commandes pour arrêter 
+    la tâche, pour attendre qu'elle soit terminée et pour la supprimer.
+
+    Pour que l'horloge d'une tâche en arrière-plan soit indépendante 
+    des autres commandes, chaque tâche en arrière-plan s'exécute dans 
+    son propre environnement Windows PowerShell (" session "). 
+    Toutefois, il peut s'agir d'une connexion temporaire créée 
+    uniquement pour exécuter la tâche ou d'une session permanente 
+    (PSSession) que vous pouvez utiliser pour exécuter plusieurs tâches ou 
+    commandes connexes.
+
+
+ UTILISATION DES APPLETS DE COMMANDE JOB
+    Utilisez une commande Start-Job pour démarrer une tâche en 
+    arrière-plan sur un ordinateur local. Start-Job retourne un objet 
+    de traitement. Vous pouvez également obtenir des objets représentant 
+    les tâches démarrées sur l'ordinateur local à l'aide de l'applet de 
+    commande Get-Job.
+
+    Pour obtenir les résultats d'une tâche, utilisez la commande 
+    Receive-Job. Si la tâche n'est pas terminée, Receive-Job retourne des 
+    résultats partiels. Vous pouvez également utiliser l'applet de 
+    commande Wait-Job pour supprimer l'invite de commandes jusqu'à ce 
+    qu'une ou toutes les tâches démarrées dans la session soient terminées.
+
+    Pour arrêter une tâche en arrière-plan, utilisez l'applet de 
+    commande Stop-Job. Pour supprimer une tâche, utilisez l'applet de 
+    commande Remove-Job.
+
+    Pour plus d'informations sur le fonctionnement des applets de 
+    commande, consultez la rubrique d'aide de chaque applet et about_Jobs.
+
+ 
+ DÉMARRAGE DE TÂCHES EN ARRIÈRE-PLAN SUR DES ORDINATEURS DISTANTS
+    Vous pouvez créer et gérer des tâches en arrière-plan sur un 
+    ordinateur local ou distant. Pour exécuter une tâche en arrière-plan à 
+    distance, utilisez le paramètre AsJob d'une applet de commande telle 
+    que Invoke-Command ou utilisez l'applet de commande Invoke-Command 
+    pour exécuter une commande Start-Job à distance. Vous pouvez 
+    également démarrer une tâche en arrière-plan dans une session interactive.
+
+    Pour plus d'informations sur les tâches en arrière-plan à 
+    distance, consultez about_Remote_Jobs.
+
+
+ TÂCHES ENFANTS
+    Chaque tâche en arrière-plan comporte une tâche parent et une ou 
+    plusieurs tâches enfants. Dans les tâches démarrées à l'aide de 
+    Start-Job ou du paramètre AsJob de Invoke-Command, la tâche 
+    parent est une tâche exécutive. Elle n'exécute pas de commande et 
+    ne retourne aucun résultat. Les commandes sont exécutées par les 
+    tâches enfants. (Les tâches démarrées à l'aide d'autres applets 
+    de commande peuvent fonctionner différemment.)
+
+    Les tâches enfants sont stockées dans la propriété ChildJobs de 
+    l'objet de traitement parent. La propriété ChildJobs peut 
+    contenir un ou plusieurs objets de traitement enfants. Les objets de 
+    traitement enfants ont un nom, un ID et un ID d'instance différents 
+    de ceux de la tâche parent pour que vous puissiez gérer les tâches 
+    parent et enfants individuellement ou en tant qu'unité.
+
+    Pour afficher les tâches parent et enfants d'une tâche, utilisez 
+    l'applet de commande Get-Job pour obtenir la tâche parent, puis 
+    redirigez la tâche vers une commande Format-List affichant les 
+    propriétés Name et ChildJobs des objets, comme indiqué dans la 
+    commande suivante.
+
+        C:\PS> get-job | format-list -property Name, ChildJobs
+
+        Name        : Job1
+        ChildJobs   : {Job2}
+
+
+    Vous pouvez également utiliser une commande Get-Job sur la tâche 
+    enfant, comme indiqué dans la commande suivante :
+
+        C:\PS> get-job job2
+
+        Id    Name   State      HasMoreData   Location    Command
+        --    ----   -----      -----------   --------    -------
+        2     Job2   Completed  True          localhost   get-process
+
+
+    La configuration de la tâche enfant dépend de la commande que 
+    vous utilisez pour la démarrer.
+
+       -- Lorsque vous utilisez Start-Job pour démarrer une tâche sur un 
+          ordinateur local, la tâche comporte une tâche parent exécutive 
+          et une tâche enfant qui exécute la commande.
+
+       -- Lorsque vous utilisez le paramètre AsJob de Invoke-Command 
+          pour démarrer une tâche sur un ou plusieurs ordinateurs, la 
+          tâche comporte une tâche parent exécutive et une tâche 
+          enfant pour chaque tâche exécutée sur chaque ordinateur.
+
+       -- Lorsque vous utilisez Invoke-Command pour exécuter une 
+          commande Start-Job sur un ou plusieurs ordinateurs 
+          distants, le résultat est le même que pour une commande 
+          locale exécutée sur chaque ordinateur distant. La commande 
+          retourne un objet de traitement pour chaque ordinateur. 
+          L'objet de traitement comporte une tâche parent exécutive 
+          et une tâche enfant qui exécute la commande.
+    
+    La tâche parent représente toutes les tâches enfants. Lorsque 
+    vous gérez une tâche parent, vous gérez également les tâches 
+    enfants associées. Par exemple, si vous arrêtez une tâche parent, 
+    toutes les tâches enfants sont arrêtées. Si vous obtenez les 
+    résultats d'une tâche parent, vous obtenez les résultats de 
+    toutes les tâches enfants.
+
+    Toutefois, vous pouvez également gérer des tâches enfants 
+    individuellement. Cette opération est très utile lorsque vous 
+    souhaitez examiner un problème sur une tâche ou obtenir les 
+    résultats d'une seule tâche enfant démarrée à l'aide du paramètre 
+    AsJob de Invoke-Command. (Le backtick [`], ou accent grave, est 
+    le caractère de continuation.)
+
+    La commande suivante utilise le paramètre AsJob de Invoke-Command pour 
+    démarrer des tâches en arrière-plan sur l'ordinateur local et deux 
+    ordinateurs distants. Elle enregistre la tâche dans la variable $j.
+
+        C:\PS> $j = invoke-command -computername localhost, Server01, Server02 `
+               -command {get-date} -AsJob
+
+    Lorsque vous affichez les propriétés Name et ChildJob de la tâche 
+    de $j, elles indiquent que la commande a retourné un objet de 
+    traitement avec trois tâches enfants, soit une pour chaque ordinateur.
+
+        C:\PS> $j | format-list name, childjobs
+
+        Name      : Job3
+        ChildJobs : {Job4, Job5, Job6}
+
+
+    Lorsque vous affichez la tâche parent, elle indique que la tâche 
+    a échoué.
+
+        C:\PS> $j
+
+        Id   Name    State   HasMoreData     Location             Command
+        --   ----    -----   -----------     --------             -------
+        1    Job3    Failed  True            localhost,server... get-date
+
+
+    En revanche, lorsque vous exécutez une commande Get-Job sur 
+    chacune des tâches enfants, elle indique qu'une seule tâche a échoué.
+
+        PS C:\ps-test> get-job job4, job5, job6
+
+        Id   Name   State      HasMoreData     Location           Command
+        --   ----   -----      -----------     --------           -------
+        4    Job4   Completed  True            localhost          get-date
+        5    Job5   Failed     False           Server01           get-date
+        6    Job6   Completed  True            Server02           get-date
+
+
+    
+    Pour obtenir les résultats de toutes les tâches enfants, utilisez 
+    l'applet de commande Receive-Job afin d'obtenir les résultats de 
+    la tâche parent. Toutefois, vous pouvez également obtenir les 
+    résultats d'une tâche enfant précise, comme indiqué dans la 
+    commande suivante.
+
+        C:\PS> receive-job -job6 -keep | format-table ComputerName, 
+        DateTime -auto
+
+        ComputerName DateTime
+        ------------ --------
+        Server02   Jeudi 13 mars 2008 16:16:03
+
+    La fonctionnalité de tâches enfants des tâches en arrière-plan 
+    Windows PowerShell vous permet de contrôler davantage les tâches 
+    que vous exécutez.
+
+
+VOIR AUSSI
+    about_Jobs
+    about_Remote_Jobs
+    about_Remote
+    Invoke-Command
+    Start-Job
+    Get-Job
+    Wait-Job
+    Stop-Job
+    Remove-Job
+    New-PSSession
+    Enter-PSSession
+    Exit-PSSession

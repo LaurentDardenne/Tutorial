@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- *******************************************************************
+Ajoute les scriptmethod ConvertToDateTime et ConvertFromDateTime aux instances de la classe ManagementBaseObject
+PS v1 ne gére que les instance WMI ManagementObject
+******************************************************************** -->
+<Types>
+ <Type>
+  <Name>System.Management.ManagementBaseObject</Name>
+  <Members>
+      <ScriptMethod>
+          <Name>ConvertToDateTime</Name>
+          <Script>
+              [System.Management.ManagementDateTimeConverter]::ToDateTime($args[0])
+          </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+          <Name>ConvertFromDateTime</Name>
+          <Script>
+              [System.Management.ManagementDateTimeConverter]::ToDmtfDateTime($args[0])
+          </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+          <Name>Put</Name>
+          <Script>
+            $this.PSBase.Put()
+          </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>Delete</Name>
+        <Script>
+          $this.PSBase.Delete()
+        </Script>
+      </ScriptMethod>
+      <ScriptMethod>
+        <Name>GetType</Name>
+        <Script>
+          $this.PSBase.GetType()
+        </Script>
+      </ScriptMethod>         
+  </Members>
+ </Type>
+</Types>
+<!-- SIG # Begin signature block -->
+<!-- MIIFQgYJKoZIhvcNAQcCoIIFMzCCBS8CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB -->
+<!-- gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR -->
+<!-- AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpi1SfGnleBI3gUk9Qt1oYChu -->
+<!-- auygggL8MIIC+DCCAmWgAwIBAgIQGpdOSYj2EbRAxGqmgFirkTAJBgUrDgMCHQUA -->
+<!-- MHsxeTB3BgNVBAMecABMAGEAdQByAGUAbgB0ACAARABhAHIAZABlAG4AbgBlACAA -->
+<!-- YQB1AHQAbwByAGkAdADpACAAZABlACAAYwBlAHIAdABpAGYAaQBjAGEAdABpAG8A -->
+<!-- bgAgAHIAYQBjAGkAbgBlACAAbABvAGMAYQBsAGUwHhcNMDcwNzAxMTMyNjU5WhcN -->
+<!-- MzkxMjMxMjM1OTU5WjA2MTQwMgYDVQQDEytMYXVyZW50IERhcmRlbm5lIGNlcnRp -->
+<!-- ZmljYXQgcG91ciBQb3dlclNoZWxsMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKB -->
+<!-- gQCfu+w77PdPXH8+C41SaR48k/DPql1EPDL8O4gArRwbKH/McvXmXCKEwaWYlFi7 -->
+<!-- w8F4CwO/kBswENa+0X3OXLUOK0LyQmJP7VQqA+mT4Up+a5Z3mcsRd1Out+OzfOuR -->
+<!-- hium1zhE1/MlIqEK6hnMl/A/bkc4SCFfdiJeZc83tNkGXwIDAQABo4HJMIHGMBMG -->
+<!-- A1UdJQQMMAoGCCsGAQUFBwMDMIGuBgNVHQEEgaYwgaOAEB0w3fWBsN0e2nTMjcGF -->
+<!-- f8qhfTB7MXkwdwYDVQQDHnAATABhAHUAcgBlAG4AdAAgAEQAYQByAGQAZQBuAG4A -->
+<!-- ZQAgAGEAdQB0AG8AcgBpAHQA6QAgAGQAZQAgAGMAZQByAHQAaQBmAGkAYwBhAHQA -->
+<!-- aQBvAG4AIAByAGEAYwBpAG4AZQAgAGwAbwBjAGEAbABlghAb5Gp5W/j2oEZ4E3Mn -->
+<!-- LmpOMAkGBSsOAwIdBQADgYEAoEjrLmRoEscvqLGp6RXFH55NjCul7e118oWxlpHt -->
+<!-- hcme2FZVN0vNB0Xqa+A3YU4QyYhYNeBaJ/gsgv1MC7PnuBR2ek58mTwVa6WlVNrn -->
+<!-- KK8A7P3MRVCOGVYkOiw5xttWFvPPph1YG1CAAwAwSI+nIfJCxyJDceOvvbCoV+US -->
+<!-- FLgxggGwMIIBrAIBATCBjzB7MXkwdwYDVQQDHnAATABhAHUAcgBlAG4AdAAgAEQA -->
+<!-- YQByAGQAZQBuAG4AZQAgAGEAdQB0AG8AcgBpAHQA6QAgAGQAZQAgAGMAZQByAHQA -->
+<!-- aQBmAGkAYwBhAHQAaQBvAG4AIAByAGEAYwBpAG4AZQAgAGwAbwBjAGEAbABlAhAa -->
+<!-- l05JiPYRtEDEaqaAWKuRMAkGBSsOAwIaBQCgeDAYBgorBgEEAYI3AgEMMQowCKAC -->
+<!-- gAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQBgjcCAQsx -->
+<!-- DjAMBgorBgEEAYI3AgEVMCMGCSqGSIb3DQEJBDEWBBSrAtLZdLwcdvwW5585wmZX -->
+<!-- ppAdTTANBgkqhkiG9w0BAQEFAASBgGdFDDp2gm+zuXbtnlqIZM37ZDYWZRJQbbOD -->
+<!-- hoMJ3nk8KpL0iNFCE2CJcw/AM4qucXdQTG4tWKEQQ564pz5wJcnDe9SzAJHpvoUP -->
+<!-- hzEbO6m/02I7bnGUYHcsP/HmtfMQ6N+3i5BVRoUtMDqwgW/+nwAWEwmHU4MRmFzT -->
+<!-- u7u7QGwQ -->
+<!-- SIG # End signature block -->

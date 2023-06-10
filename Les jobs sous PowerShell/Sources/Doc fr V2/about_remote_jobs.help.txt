@@ -1,0 +1,388 @@
+﻿RUBRIQUE
+    about_Remote_Jobs
+
+DESCRIPTION COURTE
+    Décrit comment exécuter des tâches en arrière-plan sur les 
+    ordinateurs distants.
+
+DESCRIPTION DÉTAILLÉE
+    Une tâche en arrière-plan est une commande qui s'exécute de façon 
+    asynchrone sans interagir avec la session active. L'invite de 
+    commandes se réaffiche immédiatement et vous pouvez continuer à 
+    utiliser la session pendant que la tâche s'exécute.
+
+    Par défaut, les tâches en arrière-plan s'exécutent sur 
+    l'ordinateur local. Toutefois, vous pouvez utiliser plusieurs 
+    procédures différentes pour les exécuter sur les ordinateurs 
+    distants. 
+
+    Cette rubrique explique comment exécuter une tâche en 
+    arrière-plan sur un ordinateur distant. Pour plus d'informations 
+    sur l'exécution des tâches en arrière-plan sur un ordinateur 
+    local, consultez about_Jobs. Pour plus d'informations sur les 
+    tâches en arrière-plan, consultez about_Job_Details.
+
+
+ TÂCHES EN ARRIÈRE-PLAN DISTANTES
+
+    Vous pouvez exécuter des tâches en arrière-plan sur les 
+    ordinateurs distants à l'aide de trois méthodes différentes. 
+
+    -- Démarrer une session interactive avec un ordinateur distant, 
+       puis démarrer une tâche dans la session interactive. Les 
+       procédures sont les mêmes que pour l'exécution d'une tâche 
+       locale, même si toutes les actions sont effectuées sur 
+       l'ordinateur distant.
+
+    -- Exécuter une tâche en arrière-plan sur un ordinateur distant 
+       qui retourne ses résultats à l'ordinateur local. Utilisez 
+       cette méthode lorsque vous souhaitez rassembler les résultats 
+       des tâches en arrière-plan et les gérer dans un emplacement 
+       central sur l'ordinateur local.
+
+    -- Exécuter une tâche en arrière-plan sur un ordinateur distant 
+       qui gère ses résultats sur l'ordinateur distant. Utilisez 
+       cette méthode lorsque les données de la tâche sont gérées de 
+       façon plus sécurisée sur l'ordinateur d'origine.  
+
+ DÉMARRER UNE TÂCHE EN ARRIÈRE-PLAN DANS UNE SESSION INTERACTIVE
+
+    Vous pouvez démarrer une session interactive avec un ordinateur 
+    distant, puis démarrer une tâche en arrière-plan pendant la 
+    session interactive. Pour plus d'informations sur les sessions 
+    interactives, consultez about_Remote et Enter-PSSession.
+
+    La procédure permettant de démarrer une tâche en arrière-plan 
+    dans une session interactive est presque identique à celle du 
+    démarrage d'une tâche en arrière-plan sur l'ordinateur local. 
+    Toutefois, toutes les opérations se produisent sur l'ordinateur 
+    distant, et non sur l'ordinateur local.
+
+
+    ÉTAPE 1 : ENTER-PSSESSION
+
+    Utilisez l'applet de commande Enter-PSSession pour démarrer une 
+    session interactive avec un ordinateur distant. Vous pouvez 
+    utiliser le paramètre ComputerName de l'applet de commande 
+    Enter-PSSession pour établir une connexion temporaire pour la 
+    session interactive. Vous pouvez également utiliser le paramètre 
+    Session pour exécuter la session interactive dans une session 
+    Windows PowerShell (PSSession). 
+
+    La commande suivante démarre une session interactive sur 
+    l'ordinateur Server01.
+  
+        C:\PS> Enter-PSSession -computername Server01
+
+    L'invite de commandes change pour indiquer que vous êtes 
+    maintenant connecté à l'ordinateur Server01.
+
+        Server01\C:>
+
+
+    ÉTAPE 2 : START-JOB
+
+    Pour démarrer une tâche en arrière-plan dans la session, 
+    utilisez l'applet de commande Start-Job.
+
+    La commande suivante exécute une tâche en arrière-plan qui 
+    obtient les événements dans le journal des événements Windows 
+    PowerShell sur l'ordinateur Server01. L'applet de commande 
+    Start-Job retourne un objet qui représente la tâche. 
+
+    Cette commande enregistre l'objet de traitement dans la 
+    variable $job. 
+
+        Server01\C:> $job = start-job -scriptblock {get-eventlog "Windows PowerShell"}
+   
+    Pendant l'exécution de la tâche, vous pouvez utiliser la session 
+    interactive pour exécuter d'autres commandes, notamment d'autres 
+    tâches en arrière-plan. Toutefois, la session interactive doit 
+    rester ouverte jusqu'à la fin de la tâche. Si vous mettez fin à 
+    la session, la tâche est interrompue et les résultats sont perdus.
+
+
+
+    ÉTAPE 3 : GET-JOB
+
+    Pour déterminer si la tâche est terminée, affichez la valeur de 
+    la variable $job ou utilisez l'applet de commande Get-Job pour 
+    obtenir la tâche. La commande suivante utilise l'applet de 
+    commande Get-Job pour afficher la tâche.
+
+        Server01\C:> get-job $job
+
+        SessionId  Name  State      HasMoreData  Location   Command
+        ---------  ----  -----      -----------  --------   -------
+        1          Job1  Complete   True         localhost  get-eventlog "Windows PowerShell"
+   
+    La sortie Get-Job indique que la tâche est exécutée sur 
+    l'ordinateur " localhost ", car elle a été démarrée et est 
+    exécutée sur le même ordinateur (dans ce cas, Server01).
+    
+
+
+    ÉTAPE 4 : RECEIVE-JOB
+
+    Pour obtenir les résultats de la tâche, utilisez l'applet de 
+    commande Receive-Job. Vous pouvez afficher les résultats dans la 
+    session interactive ou les enregistrer dans un fichier sur 
+    l'ordinateur distant. La commande suivante obtient les résultats 
+    de la tâche dans la variable $job. La commande utilise 
+    l'opérateur de redirection (>) pour enregistrer les résultats de 
+    la tâche dans le fichier PsLog.txt sur l'ordinateur Server01.
+
+        Server01\C:> receive-job $job > c:\logs\PsLog.txt
+
+
+
+    ÉTAPE 5 : EXIT-PSSESSION
+
+    Pour mettre fin à la session interactive, utilisez l'applet de 
+    commande Exit-PSSession. L'invite de commandes change pour 
+    indiquer que vous êtes de retour dans la session d'origine sur 
+    l'ordinateur local.
+
+        Server01\C:> Exit-PSSession
+        C:\PS>
+         
+
+
+    ÉTAPE 6 : INVOKE-COMMAND: GET-CONTENT
+     
+    Pour afficher à tout moment le contenu du fichier PsLog.txt sur 
+    l'ordinateur Server01, démarrez une autre session interactive ou 
+    exécutez une commande distante. Ce type de commande convient le 
+    mieux dans une session PSSession (connexion permanente) si vous 
+    souhaitez utiliser plusieurs commandes pour rechercher et gérer 
+    les données dans le fichier PsLog.txt. Pour plus d'informations 
+    sur les sessions PSSession, consultez about_PSSessions.
+
+    Les commandes suivantes utilisent l'applet de commande 
+    New-PSSession pour créer une session PSSession connectée à 
+    l'ordinateur Server01 et l'applet de commande Invoke-Command pour 
+    exécuter une commande Get-Content dans la session PSSession pour 
+    afficher le contenu du fichier.
+
+        C:\PS> $s = new-pssession -computername Server01
+        C:\PS> invoke-command -session $s -scriptblock {get-content c:\logs\pslog.txt}
+
+
+       
+ DÉMARRER UNE TÂCHE DISTANTE QUI RETOURNE LES RÉSULTATS À 
+ L'ORDINATEUR LOCAL (ASJOB)
+
+    Pour démarrer une tâche en arrière-plan sur un ordinateur distant 
+    qui retourne les résultats de la commande à l'ordinateur local, 
+    utilisez le paramètre AsJob d'une applet de commande, par exemple 
+    Invoke-Command. 
+
+    Lorsque vous utilisez le paramètre AsJob, l'objet de traitement 
+    est en fait créé sur l'ordinateur local, bien que la tâche 
+    s'exécute sur l'ordinateur distant. Lorsque la tâche est 
+    terminée, les résultats sont retournés à l'ordinateur local. 
+
+    Vous pouvez utiliser les applets de commande qui contiennent le 
+    nom Job (applets de commande Job) pour gérer n'importe quelle 
+    tâche créée par une applet de commande. La plupart des applets de 
+    commande avec des paramètres AsJob n'utilisant pas la 
+    communication à distance Windows PowerShell, vous pouvez les 
+    utiliser même sur les ordinateurs qui ne sont pas configurés pour 
+    la communication à distance et ne répondent pas aux conditions de 
+    la communication à distance.
+ 
+
+    ÉTAPE 1 : INVOKE-COMMAND -ASJOB
+
+    La commande suivante utilise le paramètre AsJob de l'applet de 
+    commande Invoke-Command pour démarrer une tâche en arrière-plan 
+    sur l'ordinateur Server01. La tâche exécute une commande 
+    Get-Eventlog qui obtient les événements dans le journal System. 
+    Vous pouvez utiliser le paramètre JobName pour attribuer un nom 
+    d'affichage à la tâche.
+
+       invoke-command -computername Server01 -scriptblock {get-eventlog system} -asjob 
+
+    Les résultats de la commande ressemblent à l'exemple de sortie 
+    suivant.
+
+
+       SessionId   Name    State      HasMoreData     Location   Command
+       ---------   ----    -----      -----------     --------   -------
+       1           Job1    Running    True            Server01   get-eventlog system
+
+    Lorsque le paramètre AsJob est utilisé, Invoke-Command retourne 
+    le même type d'objet de traitement que Start-Job. Vous pouvez 
+    enregistrer l'objet de traitement dans une variable ou utiliser 
+    une commande Get-Job pour obtenir la tâche.
+
+    Notez que la valeur de la propriété Location indique que la tâche 
+    a été exécutée sur l'ordinateur Server01.  
+
+
+    ÉTAPE 2 : GET-JOB
+
+    Pour gérer une tâche démarrée à l'aide du paramètre AsJob de 
+    l'applet de commande Invoke-Command, utilisez les applets de 
+    commande Job. Étant donné que l'objet de traitement qui 
+    représente la tâche distante se trouve sur l'ordinateur local, 
+    vous n'avez pas besoin d'exécuter des commandes distantes pour 
+    gérer la tâche.  
+
+    Pour déterminer si la tâche est terminée, utilisez une commande 
+    Get-Job. La commande suivante obtient toutes les tâches démarrées 
+    dans la session active. 
+
+        get-job
+
+    Étant donné que la tâche distante a été démarrée dans la session 
+    active, une commande Get-Job locale obtient la tâche. La propriété 
+    State de l'objet de traitement indique que la commande a été exécutée 
+    avec succès.
+       
+       SessionId   Name   State      HasMoreData     Location   Command
+       ---------   ----   -----      -----------     --------   -------
+       1           Job1   Completed  True            Server01   get-eventlog system
+
+
+    ÉTAPE 3 : RECEIVE-JOB
+
+    Pour obtenir les résultats de la tâche, utilisez l'applet de 
+    commande Receive-Job. Dans la mesure où les résultats de la tâche 
+    sont automatiquement retournés à l'ordinateur sur lequel l'objet 
+    de traitement se trouve, vous pouvez obtenir les résultats avec 
+    une commande Receive-Job locale.
+
+    La commande suivante utilise l'applet de commande Receive-Job 
+    pour obtenir les résultats de la tâche. Elle utilise l'ID de 
+    session pour identifier la tâche. Cette commande enregistre les 
+    résultats de la tâche dans la variable $results. Vous pouvez 
+    également rediriger les résultats vers un fichier.
+
+       $results = receive-job -id 1
+    
+
+
+ DÉMARRER UNE TÂCHE DISTANTE QUI CONSERVE LES RÉSULTATS SUR L'ORDINATEUR DISTANT
+
+    Pour démarrer une tâche en arrière-plan sur un ordinateur distant 
+    qui conserve les résultats de la commande sur l'ordinateur 
+    distant, utilisez l'applet de commande Invoke-Command pour 
+    exécuter une commande Start-Job sur un ordinateur distant. 
+    Vous pouvez utiliser cette méthode pour exécuter des tâches 
+    en arrière-plan sur plusieurs ordinateurs.
+
+    Lorsque vous exécutez une commande Start-Job à distance, l'objet 
+    de traitement est créé sur l'ordinateur distant et les résultats 
+    de la tâche sont gérés sur l'ordinateur distant. Du point de vue 
+    de la tâche, toutes les opérations sont locales. Vous exécutez 
+    simplement les commandes à distance pour gérer une tâche locale 
+    sur l'ordinateur distant.
+
+
+    ÉTAPE 1 : INVOKE-COMMAND START-JOB
+
+    Utilisez l'applet de commande Invoke-Command pour exécuter une 
+    commande Start-Job sur un ordinateur distant. 
+
+    Cette commande requiert une session PSSession (connexion 
+    permanente). Si vous utilisez le paramètre ComputerName de 
+    l'applet de commande Invoke-Command pour établir une connexion 
+    temporaire, la commande Invoke-Command est considérée comme 
+    terminée lorsque l'objet de traitement est retourné. En 
+    conséquence, la connexion temporaire est fermée et la tâche est 
+    annulée.
+ 
+    La commande suivante utilise l'applet de commande New-PSSession 
+    pour créer une session PSSession qui est connectée à l'ordinateur 
+    Server01. La commande enregistre la session PSSession dans la 
+    variable $s.
+
+        $s = new-pssession -computername Server01
+
+
+    La commande suivante utilise l'applet de commande Invoke-Command 
+    pour exécuter une commande Start-Job dans la session PSSession. 
+    Les commandes Start-Job et Get-Eventlog sont placées entre accolades.
+
+       invoke-command -session $s -scriptblock {start-job -scriptblock {get-eventlog system}}
+
+    Les résultats ressemblent à l'exemple de sortie suivant.
+
+
+       Id       Name    State      HasMoreData     Location   Command
+       --       ----    -----      -----------     --------   -------
+       2        Job2    Running    True            Localhost  get-eventlog system
+
+    Lorsque vous exécutez une commande Start-Job à distance, 
+    Invoke-Command retourne le même type d'objet de traitement que 
+    Start-Job. Vous pouvez enregistrer l'objet de traitement dans une 
+    variable ou utiliser une commande Get-Job pour obtenir la tâche.
+
+    Notez que la valeur de la propriété Location indique que la tâche 
+    a été exécutée sur l'ordinateur local, appelé " LocalHost ", même 
+    si elle a été exécutée sur l'ordinateur Server01. Étant donné que 
+    l'objet de traitement est créé sur l'ordinateur Server01 et que 
+    la tâche s'exécute sur le même ordinateur, elle est considérée 
+    comme une tâche en arrière-plan locale.  
+
+
+    ÉTAPE 2 : INVOKE-COMMAND GET-JOB
+
+    Pour gérer une tâche en arrière-plan distante, utilisez les 
+    applets de commande Job. Étant donné que l'objet de traitement 
+    est sur l'ordinateur distant, vous devez exécuter des commandes 
+    distantes pour obtenir, arrêter, attendre ou récupérer les 
+    résultats de la tâche.  
+
+    Pour savoir si la tâche est terminée, utilisez une commande 
+    Invoke-Command pour exécuter une commande Get-Job dans la session 
+    PSSession connectée à l'ordinateur Server01.
+
+        invoke-command -session $s -scriptblock {get-job}
+
+    La commande retourne un objet de traitement. La propriété State 
+    de l'objet de traitement indique que la commande a été exécutée 
+    avec succès. 
+
+       SessionId       Name    State      HasMoreData     Location   Command
+       ---------       ----    -----      -----------     --------   -------
+       2               Job2    Completed  True            LocalHost   get-eventlog system
+
+
+    ÉTAPE 3 : INVOKE-COMMAND RECEIVE-JOB
+
+    Pour obtenir les résultats de la tâche, utilisez l'applet de 
+    commande Invoke-Command pour exécuter une commande Receive-Job 
+    dans la session PSSession connectée à l'ordinateur Server01.
+
+    La commande suivante utilise l'applet de commande Receive-Job 
+    pour obtenir les résultats de la tâche. Elle utilise l'ID de 
+    session pour identifier la tâche. Cette commande enregistre les 
+    résultats de la tâche dans la variable $results. Elle utilise le 
+    paramètre Keep de Receive-Job pour conserver le résultat dans le 
+    cache de tâches sur l'ordinateur distant.
+
+        $results = invoke-command -session $s -scriptblock {receive-job -sessionid 2 -keep}
+
+    Vous pouvez également rediriger les résultats vers un fichier sur 
+    l'ordinateur local ou distant. La commande suivante utilise un 
+    opérateur de redirection pour enregistrer les résultats dans un 
+    fichier sur l'ordinateur Server01.
+
+        invoke-command -session $s -command {receive-job -sessionid 2 > c:\logs\pslog.txt}
+
+
+VOIR AUSSI
+    about_Jobs
+    about_Job_Details
+    about_Remote
+    Invoke-Command
+    Start-Job
+    Get-Job
+    Wait-Job
+    Stop-Job
+    Remove-Job
+    New-PSSession
+    Enter-PSSession
+    Exit-PSSession

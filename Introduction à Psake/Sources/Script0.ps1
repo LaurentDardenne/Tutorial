@@ -1,0 +1,1 @@
+#Le script PSake na contient aucune information, déclenche une exception

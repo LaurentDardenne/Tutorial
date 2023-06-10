@@ -1,0 +1,22 @@
+#pragma namespace("\\\\.\\root\\TestVues")
+
+[
+ JoinOn("Win32_DiskPartition.DiskIndex = Win32_DiskDrive.Index"),
+ ViewSources{
+              "SELECT DiskIndex, Index, DeviceID FROM Win32_DiskPartition" ,
+              "SELECT Index, Caption, Model FROM Win32_DiskDrive"},
+ ViewSpaces{
+              "\\\\.\\root\\cimv2",
+              "\\\\.\\root\\cimv2"},
+ dynamic: ToInstance, 
+ provider("MS_VIEW_INSTANCE_PROVIDER")
+]
+
+class JoinedPartitionDisk
+{
+[PropertySources{"DiskIndex", "Index"}] UInt32 ID;
+[PropertySources{"", "Caption"}] String Caption;
+[PropertySources{"DeviceID", ""},Key] String DeviceId;
+[PropertySources{"", "Model"}] String Model;
+};
+

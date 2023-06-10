@@ -1,0 +1,360 @@
+﻿RUBRIQUE
+    about_Jobs
+
+DESCRIPTION COURTE
+    Fournit des informations sur la façon dont les tâches en 
+    arrière-plan Windows PowerShell exécutent une commande ou une 
+    expression à l'arrière-plan sans interagir avec la session active. 
+
+DESCRIPTION LONGUE
+    Cette rubrique explique comment exécuter des tâches en 
+    arrière-plan dans Windows PowerShell sur un ordinateur local. 
+    Pour plus d'informations sur l'exécution de tâches en 
+    arrière-plan sur des ordinateurs distants, consultez 
+    about_Remote_Jobs. 
+    
+    Lorsque vous démarrez une tâche en arrière-plan, l'invite de commandes 
+    s'affiche immédiatement, même si l'exécution de la tâche prend un 
+    certain temps. Vous pouvez continuer à travailler dans la session 
+    sans interruption pendant que la tâche s'exécute. 
+
+    Important : les tâches en arrière-plan démarrées à l'aide de 
+                Start-Job ou du paramètre AsJob de Invoke-Command reposent sur 
+                l'infrastructure de communication à distance Windows PowerShell. 
+                Pour utiliser ces fonctionnalités, Windows PowerShell doit être 
+                configuré pour la communication à distance, même si la tâche 
+                en arrière-plan est uniquement exécutée sur l'ordinateur local. 
+                Pour plus d'informations, consultez about_Remote_Requirements.
+
+ 
+        
+ COMMENT DÉMARRER UNE TÂCHE SUR L'ORDINATEUR LOCAL
+    Pour démarrer une tâche en arrière-plan sur l'ordinateur local, 
+    utilisez l'applet de commande Start-Job. 
+
+    Pour écrire une commande Start-Job, placez la commande exécutée 
+    par la tâche entre accolades ({}). Utilisez le paramètre 
+    ScriptBlock pour spécifier la commande.
+
+    La commande suivante démarre une tâche en arrière-plan qui exécute une 
+    commande Get-Process sur l'ordinateur local.
+
+        start-job -scriptblock {get-process}
+
+
+    La commande Start-Job retourne un objet qui représente la tâche. 
+    L'objet de traitement contient des informations utiles sur la 
+    tâche, mais ne contient pas les résultats de la tâche.
+    
+    Enregistrez l'objet de traitement dans une variable, puis 
+    utilisez-le avec les autres applets de commande Job pour gérer la 
+    tâche en arrière-plan. La commande suivante démarre un objet de 
+    traitement et enregistre l'objet de traitement résultant dans la 
+    variable $job.
+
+        $job = start-job -scriptblock {get-process} 
+
+    Vous pouvez également utiliser l'applet de commande Get-Job pour 
+    obtenir des objets représentant les tâches démarrées dans la 
+    session active. Get-Job retourne le même objet de traitement que 
+    Start-Job.
+
+ 
+ OBTENTION D'OBJETS DE TRAITEMENT
+
+    Pour obtenir les objets représentant les tâches en arrière-plan 
+    démarrées dans la session active, utilisez l'applet de commande 
+    Get-Job. Sans paramètre, Get-Job retourne toutes les tâches 
+    démarrées dans la session active.
+
+    Par exemple, la commande suivante obtient les tâches de la 
+    session active.
+
+	get-job
+
+
+        Id  Name  State      HasMoreData  Location   Command
+        --  ----  -----      -----------  --------   -------
+        1   Job1  Running    True         localhost  get-process
+
+
+    Vous pouvez également enregistrer l'objet de traitement dans une 
+    variable et l'utiliser pour représenter la tâche dans une 
+    commande ultérieure. La commande suivante obtient la tâche avec 
+    l'ID 1 et l'enregistre dans la variable $job.
+
+       $job = get-job -id 1 
+
+
+    L'objet de traitement contient l'état de la tâche, qui indique si 
+    celle-ci est terminée. Une tâche terminée présente un état 
+    " Complete " (Terminée) ou " Failed " (Non réussie). Une tâche 
+    peut également être bloquée ou en cours d'exécution.
+
+
+	get-job
+
+
+        Id  Name  State      HasMoreData  Location   Command
+        --  ----  -----      -----------  --------   -------
+        1   Job1  Complete    True        localhost  get-process
+
+
+
+ OBTENTION DES RÉSULTATS D'UNE TÂCHE
+
+    Lorsque vous exécutez une tâche en arrière-plan, les résultats 
+    n'apparaissent pas immédiatement. Au lieu de cela, l'applet de 
+    commande Start-Job retourne un objet de traitement représentant 
+    la tâche, mais qui ne contient pas de résultat. Pour obtenir les 
+    résultats d'une tâche en arrière-plan, utilisez l'applet de 
+    commande Receive-Job.
+
+    La commande suivante utilise l'applet de commande Receive-Job 
+    pour obtenir les résultats de la tâche. Elle utilise un objet de 
+    traitement enregistré dans la variable $job pour identifier la tâche.
+
+	receive-job -job $job
+
+     L'applet de commande Receive-Job retourne les résultats de la tâche. 
+
+
+           Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)    Id ProcessName
+           -------  ------    -----      ----- -----   ------    -- -----------
+               103       4    11328       9692    56           1176 audiodg
+               804      14    12228      14108   100   101.74  1740 CcmExec
+               668       7     2672       6168   104    32.26   488 csrss
+	   ...
+
+     Vous pouvez également enregistrer les résultats d'une tâche dans 
+     une variable. La commande suivante enregistre les résultats de 
+     la tâche de la variable $job vers la variable $results.
+
+	$results = receive-job -job $job
+
+     De même, vous pouvez enregistrer les résultats de la tâche dans 
+     un fichier à l'aide de l'opérateur de redirection (>) ou de 
+     l'applet de commande Out-File. La commande suivante utilise 
+     l'opérateur de redirection pour enregistrer les résultats de la 
+     tâche de la variable $job dans le fichier Results.txt.
+
+
+        receive-job -job $job > results.txt
+
+
+    
+
+ OBTENTION ET CONSERVATION DE RÉSULTATS DE TÂCHE PARTIELS
+
+    L'applet de commande Receive-Job retourne les résultats d'une tâche en 
+    arrière-plan. Si la tâche est terminée, Receive-Job retourne 
+    l'ensemble des résultats. Si la tâche est toujours en cours 
+    d'exécution, Receive-Job obtient les résultats générés jusqu'ici. 
+    Vous pouvez réexécuter des commandes Receive-Job pour obtenir les 
+    résultats restants.
+
+    Lorsque Receive-Job retourne des résultats, par défaut, elle 
+    supprime les résultats du cache dans lequel les résultats des 
+    tâches sont stockés. Si vous exécutez une autre commande 
+    Receive-Job, vous obtenez uniquement les résultats qui n'ont pas 
+    encore été reçus.
+
+    Les commandes suivantes indiquent les résultats de commandes 
+    Receive-Job exécutées avant la fin de la tâche.
+
+
+	C:\PS> receive-job -job $job
+
+        Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id ProcessName
+        -------  ------    -----      ----- -----   ------     -- -----------
+            103       4    11328       9692    56            1176 audiodg
+            804      14    12228      14108   100   101.74   1740 CcmExec
+
+
+	C:\PS> receive-job -job $job
+
+        Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id ProcessName
+        -------  ------    -----      ----- -----   ------     -- -----------
+             68       3     2632        664    29     0.36   1388 ccmsetup
+            749      22    21468      19940   203   122.13   3644 communicator
+            905       7     2980       2628    34   197.97    424 csrss
+           1121      25    28408      32940   174   430.14   3048 explorer
+
+
+    Pour éviter que Receive-Job ne supprime les résultats de tâche qu'il a 
+    retournés, utilisez le paramètre Keep. Ainsi, Receive-Job retourne 
+    tous les résultats ayant été générés jusqu'ici.
+
+    Les commandes suivantes indiquent l'effet de l'utilisation du 
+    paramètre Keep sur une tâche qui n'est pas encore terminée. 
+
+	C:\PS> receive-job -job $job -keep
+
+        Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id ProcessName
+        -------  ------    -----      ----- -----   ------     -- -----------
+            103       4    11328       9692    56            1176 audiodg
+            804      14    12228      14108   100   101.74   1740 CcmExec
+
+
+	C:\PS> receive-job -job $job -keep
+
+        Handles  NPM(K)    PM(K)      WS(K) VM(M)   CPU(s)     Id ProcessName
+        -------  ------    -----      ----- -----   ------     -- -----------
+            103       4    11328       9692    56            1176 audiodg
+            804      14    12228      14108   100   101.74   1740 CcmExec
+             68       3     2632        664    29     0.36   1388 ccmsetup
+            749      22    21468      19940   203   122.13   3644 communicator
+            905       7     2980       2628    34   197.97    424 csrss
+           1121      25    28408      32940   174   430.14   3048 explorer
+
+
+    
+ATTENTE DE RÉSULTATS
+
+    Si vous exécutez une commande qui prend un certain temps, vous 
+    pouvez utiliser les propriétés de l'objet de traitement pour 
+    déterminer à quel moment la tâche est terminée. La commande 
+    suivante utilise l'objet Get-Job pour obtenir toutes les tâches 
+    en arrière-plan de la session active.
+
+	get-job
+
+    Les résultats apparaissent dans une table. L'état de la tâche 
+    apparaît dans la colonne State.
+
+        Id  Name  State      HasMoreData  Location   Command
+        --  ----  -----      -----------  --------   -------
+        1   Job1  Complete    True         localhost  get-process
+        2   Job2  Running     True         localhost  get-eventlog -log syst...
+        3   Job3  Complete    True         localhost  dir -path c:\* -recurse
+
+
+    Dans ce cas, la propriété State révèle que la tâche 2 (Job2) est 
+    toujours en cours d'exécution. Si vous utilisiez l'applet de 
+    commande Receive-Job pour obtenir les résultats des tâches 
+    maintenant, ceux-ci seraient incomplets. Vous pouvez utiliser 
+    l'applet de commande Receive-Job à plusieurs reprises pour 
+    obtenir tous les résultats. Par défaut, chaque fois que vous 
+    l'utilisez, vous obtenez uniquement les résultats qui n'ont pas 
+    encore été reçus, mais vous pouvez utiliser le paramètre Keep de 
+    l'applet de commande Receive-Job pour conserver les résultats, 
+    même s'ils ont déjà été reçus.
+
+    À ce stade, vous pouvez écrire les résultats dans un fichier, 
+    puis ajouter les nouveaux résultats à mesure qu'ils arrivent. 
+    Sinon, vous pouvez attendre et vérifier l'état de la tâche 
+    ultérieurement.
+
+    Autrement, vous pouvez utiliser l'applet de commande Wait-Job 
+    pour attendre tout ou partie des résultats de la tâche. Wait-Job 
+    vous permet d'attendre une tâche précise, toutes les tâches ou 
+    l'une des tâches à terminer.
+  
+    La commande suivante utilise l'applet de commande Wait-Job pour 
+    attendre une tâche avec l'ID 10.
+
+	wait-job -ID 10
+
+    Ainsi, l'invite Windows PowerShell est supprimée jusqu'à ce que 
+    la tâche soit terminée.
+
+    Vous pouvez également attendre pendant une certaine période. 
+    Cette commande utilise le paramètre Timeout pour limiter 
+    l'attente à 120 secondes. Lorsque le délai expire, l'invite de 
+    commandes s'affiche, mais la tâche continue de s'exécuter à 
+    l'arrière-plan.
+
+	wait-job -ID 10 -timeout 120
+
+
+ARRÊT D'UNE TÂCHE
+
+    Pour arrêter une tâche en arrière-plan, utilisez l'applet de 
+    commande Stop-Job. La commande suivante démarre une tâche pour 
+    obtenir chaque entrée du journal des événements système. Elle 
+    enregistre l'objet de traitement dans la variable $job.
+
+	$job = start-job -scriptblock {get-eventlog -log system} 
+
+    La commande suivante arrête la tâche. Elle utilise un opérateur 
+    de pipeline (|) pour envoyer la tâche de la variable $job vers 
+    Stop-Job.
+
+	$job | stop-job
+
+
+SUPPRESSION D'UNE TÂCHE
+
+    Pour supprimer une tâche en arrière-plan, utilisez l'applet de 
+    commande Remove-Job. La commande suivante supprime la tâche de la 
+    variable $job.
+
+	remove-job -job $job 
+
+
+EXAMEN D'UNE TÂCHE NON RÉUSSIE
+
+    Pour comprendre pourquoi une tâche a échoué, utilisez la 
+    sous-propriété Reason de l'objet de traitement.
+
+    La commande suivante démarre une tâche sans les informations 
+    d'identification requises. Elle enregistre l'objet de traitement 
+    dans la variable $job.
+
+
+         $job = start-job -scriptblock {new-item -path HKLM:\Software\MyCompany}
+
+         Id   Name  State    HasMoreData  Location   Command
+         --   ----  -----    -----------  --------   -------
+         1    Job1  Failed   False         localhost  new-item -path HKLM:\S...
+
+    La commande suivante utilise la propriété Reason pour rechercher 
+    l'erreur à l'origine de l'échec de la tâche.
+
+         $job.ChildJobs[0].JobStateInfo.Reason
+
+
+    Dans ce cas, la tâche a échoué parce que l'ordinateur distant 
+    exigeait des informations d'identification pour exécuter la 
+    commande. La valeur de la propriété Reason est :
+
+         La connexion au serveur distant a échoué avec le message d'erreur 
+         suivant : Accès refusé.
+
+
+APPLETS DE COMMANDE JOB
+
+    Start-Job        Démarre une tâche en arrière-plan sur un 
+                     ordinateur local.
+
+    Get-Job          Obtient les tâches en arrière-plan 
+                     démarrées dans la session active.
+
+    Receive-Job      Obtient les résultats des tâches en arrière-plan.
+
+    Stop-Job         Arrête une tâche en arrière-plan.
+
+    Wait-Job         Supprime l'invite de commandes jusqu'à ce 
+                     qu'une ou toutes les tâches soient terminées.
+
+    Remove-Job       Supprime une tâche en arrière-plan.
+
+    Invoke-Command   Le paramètre AsJob exécute toute commande en tant 
+                     que tâche en arrière-plan sur un ordinateur distant. 
+                     Vous pouvez également utiliser Invoke-Command pour 
+                     exécuter toute commande de tâche à distance, 
+                     y compris une commande Start-Job.
+
+ 
+VOIR AUSSI
+   about_Remote_Jobs
+   about_Job_Details
+   about_Remote
+   about_PSSessions  
+   Start-Job
+   Get-Job
+   Receive-Job
+   Stop-Job
+   Wait-Job
+   Remove-Job
+   Invoke-Command
